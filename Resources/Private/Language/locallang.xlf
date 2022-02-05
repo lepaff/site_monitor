@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:site_monitor/Resources/Private/Language/locallang.xlf" date="2022-01-31T12:21:51Z" product-name="site_monitor">
+		<header/>
+		<body>
+			<trans-unit id="tx_sitemonitor_domain_model_site" resname="tx_sitemonitor_domain_model_site">
+				<source>Site</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_site.title" resname="tx_sitemonitor_domain_model_site.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_site.typo3_version" resname="tx_sitemonitor_domain_model_site.typo3_version">
+				<source>Typo3 Version</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_site.php_version" resname="tx_sitemonitor_domain_model_site.php_version">
+				<source>Php Version</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_site.installed_extension" resname="tx_sitemonitor_domain_model_site.installed_extension">
+				<source>Installed Extension</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_extension" resname="tx_sitemonitor_domain_model_extension">
+				<source>Extension</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_extension.title" resname="tx_sitemonitor_domain_model_extension.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_extension.version" resname="tx_sitemonitor_domain_model_extension.version">
+				<source>Version</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client" resname="tx_sitemonitor_domain_model_client">
+				<source>Client</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.title" resname="tx_sitemonitor_domain_model_client.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.username" resname="tx_sitemonitor_domain_model_client.username">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.password" resname="tx_sitemonitor_domain_model_client.password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.secret" resname="tx_sitemonitor_domain_model_client.secret">
+				<source>Secret</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.url" resname="tx_sitemonitor_domain_model_client.url">
+				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.site" resname="tx_sitemonitor_domain_model_client.site">
+				<source>Site</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

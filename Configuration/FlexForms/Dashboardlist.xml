@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Pagination</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.pagination.itemsPerPage>
+						<TCEforms>
+							<label>Items per page</label>
+							<config>
+								<type>input</type>
+								<default>10</default>
+								<size>20</size>
+                                <eval>required</eval>
+							</config>
+						</TCEforms>
+					</settings.pagination.itemsPerPage>
+					<settings.pagination.maximumLinks>
+						<TCEforms>
+							<label>Maximum of displayed links</label>
+							<config>
+								<type>input</type>
+								<default>10</default>
+								<size>20</size>
+                                <eval>required</eval>
+							</config>
+						</TCEforms>
+					</settings.pagination.maximumLinks>
+					<settings.pagination.position>
+						<TCEforms>
+							<label>Position of searchresults</label>
+							<config>
+								<type>check</type>
+                                <cols>inline</cols>
+                                <default>2</default>
+								<items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">On top</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">At bottom</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+							</config>
+						</TCEforms>
+					</settings.pagination.position>
+				</el>
+			</ROOT>
+		</sDEF>
+        <texts>
+            <ROOT>
+            <TCEforms>
+					<sheetTitle>Texts</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el></el>
+            </ROOT>
+        </texts>
+	</sheets>
+</T3DataStructure>

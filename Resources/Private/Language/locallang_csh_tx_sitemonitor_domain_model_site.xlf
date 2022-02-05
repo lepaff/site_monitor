@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:site_monitor/Resources/Private/Language/locallang_csh_tx_sitemonitor_domain_model_site.xlf" date="2022-01-31T12:21:51Z" product-name="site_monitor">
+		<header/>
+		<body>
+			<trans-unit id="title.description" resname="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="typo3_version.description" resname="typo3_version.description">
+				<source>typo3Version</source>
+			</trans-unit>
+			<trans-unit id="php_version.description" resname="php_version.description">
+				<source>phpVersion</source>
+			</trans-unit>
+			<trans-unit id="installed_extension.description" resname="installed_extension.description">
+				<source>installedExtension</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

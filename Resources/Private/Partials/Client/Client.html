@@ -1,0 +1,82 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"></html>
+<f:variable name="jsonUrl" value="{client.url}/?type={client.typeParam}" />
+<div style="border-bottom:1px solid #000; padding-bottom:20px; margin-bottom: 20px;">
+    <table class="tx_sitemonitor" tableborder="1" width="100%">
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000;vertical-align: top; width: 25%;">
+                <strong>
+                    <f:if condition="{f:count(subject:client.site)} > 0">
+                        <f:then>
+                            <f:link.action action="show" arguments="{client : client}">{client.title}</f:link.action>
+                        </f:then>
+                        <f:else>
+                            {client.title}
+                        </f:else>
+                    </f:if>
+                </strong>
+            </td>
+            <td style="border: 1px solid #000; width: 50%;">
+                <f:if condition="{f:count(subject:client.site)} > 0">
+                    <f:then>
+                        <f:link.action action="show" arguments="{client : client}">
+                            <table width="100%">
+                                <tr>
+                                    <td style="border-bottom: 1px solid #000;">Date:</td>
+                                    <td style="border-bottom: 1px solid #000;"><f:format.date format="d.m.Y H:i">{client.site.0.tstamp}</f:format.date></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #000;">Title:</td>
+                                    <td style="border-bottom: 1px solid #000;">{client.site.0.title}</td>
+                                </tr>
+                                <f:if condition="{client.site.0.patchAvailable}">
+                                    <f:then>
+                                        <tr>
+                                            <td class="text-ap-orange" style="border-bottom: 1px solid #000;"><strong>TYPO3 Version</strong></td>
+                                            <td class="text-ap-orange" style="border-bottom: 1px solid #000;">{client.site.0.typo3Version}</td>
+                                        </tr>
+                                    </f:then>
+                                    <f:else>
+                                        <tr>
+                                            <td class="text-ap-green" style="border-bottom: 1px solid #000;"><strong>TYPO3 Version</strong></td>
+                                            <td class="text-ap-green" style="border-bottom: 1px solid #000;">{client.site.0.typo3Version}</td>
+                                        </tr>
+                                    </f:else>
+                                </f:if>
+                                <f:if condition="{client.site.0.patchAvailable}">
+                                    <tr>
+                                        <td class="text-ap-orange" style="border-bottom: 1px solid #000;">Patch:</td>
+                                        <td class="text-ap-orange" style="border-bottom: 1px solid #000;">{client.site.0.patchAvailable}</td>
+                                    </tr>
+                                </f:if>
+                                <tr>
+                                    <td>PHP:</td>
+                                    <td>{client.site.0.phpVersion}</td>
+                                </tr>
+                            </table>
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        <a href="{jsonUrl}" target="_blank">{jsonUrl}</a>
+                    </f:else>
+                </f:if>
+            </td>
+            <td style="border: 1px solid #000; width: 25%;text-align: center;">
+                <f:if condition="{f:count(subject:client.site)} > 0">
+                    <f:then>
+                        <f:link.action action="generate" arguments="{client : client}">Update site data</f:link.action>
+                    </f:then>
+                    <f:else>
+                        <f:link.action action="generate" arguments="{client : client}">Import site data</f:link.action>
+                    </f:else>
+                </f:if>
+                <br/>
+                <a href="{jsonUrl}" target="_blank">View JSON</a>
+            </td>
+        </tr>
+    </table>
+</div>
