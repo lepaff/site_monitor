@@ -2,6 +2,6 @@
 
 return [
     'sitemonitor:sites' => [
-        'class' => \MP\SiteMonitor\Command\SitesCommand::class,
+        'class' => \LEPAFF\SiteMonitor\Command\SitesCommand::class,
     ]
 ];

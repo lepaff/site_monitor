@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Model;
+namespace LEPAFF\SiteMonitor\Domain\Model;
 
 
 /**
@@ -72,7 +72,7 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * installedExtension
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extension>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $installedExtension = null;
@@ -250,10 +250,10 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Extension
      *
-     * @param \MP\SiteMonitor\Domain\Model\Extension $installedExtension
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtension
      * @return void
      */
-    public function addInstalledExtension(\MP\SiteMonitor\Domain\Model\Extension $installedExtension)
+    public function addInstalledExtension(\LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtension)
     {
         $this->installedExtension->attach($installedExtension);
     }
@@ -261,10 +261,10 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Extension
      *
-     * @param \MP\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove The Extension to be removed
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove The Extension to be removed
      * @return void
      */
-    public function removeInstalledExtension(\MP\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove)
+    public function removeInstalledExtension(\LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove)
     {
         $this->installedExtension->detach($installedExtensionToRemove);
     }
@@ -272,7 +272,7 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the installedExtension
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extension> $installedExtension
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension> $installedExtension
      */
     public function getInstalledExtension()
     {
@@ -292,7 +292,7 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the installedExtension
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extension> $installedExtension
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension> $installedExtension
      * @return void
      */
     public function setInstalledExtension(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $installedExtension)

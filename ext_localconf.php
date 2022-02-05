@@ -6,11 +6,11 @@ defined('TYPO3_MODE') || die();
         'SiteMonitor',
         'Dashboardlist',
         [
-            \MP\SiteMonitor\Controller\MonitorController::class => 'list, show, generate, search',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list, show, generate, search',
         ],
         // non-cacheable actions
         [
-            \MP\SiteMonitor\Controller\MonitorController::class => 'show, generate, search',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, search',
         ]
     );
 
@@ -42,5 +42,5 @@ defined('TYPO3_MODE') || die();
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['sitemonitor-siteimport'] =
-        \MP\SiteMonitor\Command\SitesCommandController::class;
+        \LEPAFF\SiteMonitor\Command\SitesCommandController::class;
 })();

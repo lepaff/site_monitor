@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Model;
+namespace LEPAFF\SiteMonitor\Domain\Model;
 
 
 /**
@@ -44,7 +44,7 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * versions
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extensionversion>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $versions = null;
@@ -166,10 +166,10 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a version
      *
-     * @param \MP\SiteMonitor\Domain\Model\Extensionversion $version
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensionversion $version
      * @return void
      */
-    public function addVersion(\MP\SiteMonitor\Domain\Model\Extensionversion $version)
+    public function addVersion(\LEPAFF\SiteMonitor\Domain\Model\Extensionversion $version)
     {
         $this->versions->attach($version);
     }
@@ -177,10 +177,10 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a version
      *
-     * @param \MP\SiteMonitor\Domain\Model\Extensionversion $versionToRemove The versions to be removed
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensionversion $versionToRemove The versions to be removed
      * @return void
      */
-    public function removeSite(\MP\SiteMonitor\Domain\Model\Extensionversion $versionToRemove)
+    public function removeSite(\LEPAFF\SiteMonitor\Domain\Model\Extensionversion $versionToRemove)
     {
         $this->versions->detach($versionToRemove);
     }
@@ -188,7 +188,7 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the versions
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extensionversion> $versions
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion> $versions
      */
     public function getVersions()
     {
@@ -198,7 +198,7 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the versions
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Extensionversion> $versions
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion> $versions
      * @return void
      */
     public function setVersions(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $versions)

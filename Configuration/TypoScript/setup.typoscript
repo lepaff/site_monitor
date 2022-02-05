@@ -44,7 +44,7 @@ plugin.tx_sitemonitor_dashboardlist {
 }
 
 config.tx_extbase.persistence.classes {
-    \MP\SiteMonitor\Domain\Model\Site {
+    \LEPAFF\SiteMonitor\Domain\Model\Site {
         mapping {
             tableName = tx_sitemonitor_domain_model_site
             columns.tstamp.mapOnProperty = tstamp

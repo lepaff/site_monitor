@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Model;
+namespace LEPAFF\SiteMonitor\Domain\Model;
 
 
 /**
@@ -107,7 +107,7 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * site
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Site>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $site = null;
@@ -406,10 +406,10 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Site
      *
-     * @param \MP\SiteMonitor\Domain\Model\Site $site
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Site $site
      * @return void
      */
-    public function addSite(\MP\SiteMonitor\Domain\Model\Site $site)
+    public function addSite(\LEPAFF\SiteMonitor\Domain\Model\Site $site)
     {
         $this->site->attach($site);
     }
@@ -417,10 +417,10 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Site
      *
-     * @param \MP\SiteMonitor\Domain\Model\Site $siteToRemove The Site to be removed
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Site $siteToRemove The Site to be removed
      * @return void
      */
-    public function removeSite(\MP\SiteMonitor\Domain\Model\Site $siteToRemove)
+    public function removeSite(\LEPAFF\SiteMonitor\Domain\Model\Site $siteToRemove)
     {
         $this->site->detach($siteToRemove);
     }
@@ -428,7 +428,7 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the site
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Site> $site
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site> $site
      */
     public function getSite()
     {
@@ -438,7 +438,7 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the site
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MP\SiteMonitor\Domain\Model\Site> $site
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site> $site
      * @return void
      */
     public function setSite(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $site)

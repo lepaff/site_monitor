@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Repository;
+namespace LEPAFF\SiteMonitor\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

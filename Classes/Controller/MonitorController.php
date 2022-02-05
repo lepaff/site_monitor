@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Controller;
+namespace LEPAFF\SiteMonitor\Controller;
 
-use MP\SiteMonitor\Domain\Model\Site;
-use MP\SiteMonitor\Domain\Model\Extension;
-use MP\SiteMonitor\Domain\Model\Extensiondoc;
-use MP\SiteMonitor\Domain\Model\Extensionversion;
+use LEPAFF\SiteMonitor\Domain\Model\Site;
+use LEPAFF\SiteMonitor\Domain\Model\Extension;
+use LEPAFF\SiteMonitor\Domain\Model\Extensiondoc;
+use LEPAFF\SiteMonitor\Domain\Model\Extensionversion;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -43,14 +43,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * clientRepository
      *
-     * @var \MP\SiteMonitor\Domain\Repository\ClientRepository
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\ClientRepository
      */
     protected $clientRepository = null;
 
     /**
-     * @param \MP\SiteMonitor\Domain\Repository\ClientRepository $clientRepository
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\ClientRepository $clientRepository
      */
-    public function injectClientRepository(\MP\SiteMonitor\Domain\Repository\ClientRepository $clientRepository)
+    public function injectClientRepository(\LEPAFF\SiteMonitor\Domain\Repository\ClientRepository $clientRepository)
     {
         $this->clientRepository = $clientRepository;
     }
@@ -58,14 +58,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * siteRepository
      *
-     * @var \MP\SiteMonitor\Domain\Repository\SiteRepository
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\SiteRepository
      */
     protected $siteRepository = null;
 
     /**
-     * @param \MP\SiteMonitor\Domain\Repository\SiteRepository $siteRepository
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\SiteRepository $siteRepository
      */
-    public function injectSiteRepository(\MP\SiteMonitor\Domain\Repository\SiteRepository $siteRepository)
+    public function injectSiteRepository(\LEPAFF\SiteMonitor\Domain\Repository\SiteRepository $siteRepository)
     {
         $this->siteRepository = $siteRepository;
     }
@@ -73,14 +73,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * extensionRepository
      *
-     * @var \MP\SiteMonitor\Domain\Repository\ExtensionRepository
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository
      */
     protected $extensionRepository = null;
 
     /**
-     * @param \MP\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository
      */
-    public function injectExtensionRepository(\MP\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository)
+    public function injectExtensionRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository)
     {
         $this->extensionRepository = $extensionRepository;
     }
@@ -88,14 +88,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * extensiondocRepository
      *
-     * @var \MP\SiteMonitor\Domain\Repository\ExtensiondocRepository
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository
      */
     protected $extensiondocRepository = null;
 
     /**
-     * @param \MP\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository
      */
-    public function injectExtensiondocRepository(\MP\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository)
+    public function injectExtensiondocRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository)
     {
         $this->extensiondocRepository = $extensiondocRepository;
     }
@@ -103,14 +103,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * extensionversionRepository
      *
-     * @var \MP\SiteMonitor\Domain\Repository\ExtensionversionRepository
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository
      */
     protected $extensionversionRepository = null;
 
     /**
-     * @param \MP\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository
      */
-    public function injectExtensionversionRepository(\MP\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository)
+    public function injectExtensionversionRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository)
     {
         $this->extensionversionRepository = $extensionversionRepository;
     }
@@ -183,12 +183,12 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action show
      *
-     * @param \MP\SiteMonitor\Domain\Model\Client $client
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
      * @param array $errors
      * @return string|object|null|void
      */
     public function showAction(
-        \MP\SiteMonitor\Domain\Model\Client $client,
+        \LEPAFF\SiteMonitor\Domain\Model\Client $client,
         array $errors = []
     )
     {
@@ -207,10 +207,10 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action generate
      *
-     * @param \MP\SiteMonitor\Domain\Model\Client $client
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
      * @return string|object|null|void
      */
-    public function generateAction(\MP\SiteMonitor\Domain\Model\Client $client) {
+    public function generateAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client) {
         $timeAtStart = microtime(true);
         if ($client->getUrl() === '') {
             // no url set - throw error

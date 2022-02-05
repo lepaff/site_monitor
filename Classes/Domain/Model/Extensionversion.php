@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Model;
+namespace LEPAFF\SiteMonitor\Domain\Model;
 
 
 /**

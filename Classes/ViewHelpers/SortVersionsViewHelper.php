@@ -1,5 +1,5 @@
 <?php
-namespace MP\SiteMonitor\ViewHelpers;
+namespace LEPAFF\SiteMonitor\ViewHelpers;
 
 /*
  * This file is part of the TYPO3 CMS project.

@@ -1,5 +1,5 @@
 {
-    "name": "mp/site-monitor",
+    "name": "lepaff/site-monitor",
     "type": "typo3-cms-extension",
     "description": "Extension to monitor (TYPO3) websites",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MP\\SiteMonitor\\": "Classes"
+            "LEPAFF\\SiteMonitor\\": "Classes"
         }
     },
     "replace": {

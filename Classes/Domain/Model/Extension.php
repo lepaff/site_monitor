@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MP\SiteMonitor\Domain\Model;
+namespace LEPAFF\SiteMonitor\Domain\Model;
 
 
 /**
@@ -44,7 +44,7 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * extensionDoc
      *
-     * @var \MP\SiteMonitor\Domain\Model\Extensiondoc
+     * @var \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc
      */
     protected $extensionDoc = '';
 
@@ -114,7 +114,7 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the extensionDoc
      *
-     * @return \MP\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
+     * @return \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
      */
     public function getExtensionDoc()
     {
@@ -124,10 +124,10 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the extensionDoc
      *
-     * @param \MP\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
      * @return void
      */
-    public function setExtensionDoc(\MP\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc)
+    public function setExtensionDoc(\LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc)
     {
         $this->extensionDoc = $extensionDoc;
     }

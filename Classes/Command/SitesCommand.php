@@ -1,9 +1,9 @@
 <?php
-namespace MP\SiteMonitor\Command;
+namespace LEPAFF\SiteMonitor\Command;
 
-use MP\SiteMonitor\Domain\Model\Extensionversion;
-use MP\SiteMonitor\Domain\Repository\ExtensiondocRepository;
-use MP\SiteMonitor\Domain\Repository\ExtensionversionRepository;
+use LEPAFF\SiteMonitor\Domain\Model\Extensionversion;
+use LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository;
+use LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

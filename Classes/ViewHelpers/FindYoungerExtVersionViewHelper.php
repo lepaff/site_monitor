@@ -1,6 +1,6 @@
 <?php
 
-namespace MP\SiteMonitor\ViewHelpers;
+namespace LEPAFF\SiteMonitor\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;

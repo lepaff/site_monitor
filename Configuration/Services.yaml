@@ -1,5 +1,5 @@
 services:
-  MP\SiteMonitor\Command\SitesCommand:
+  LEPAFF\SiteMonitor\Command\SitesCommand:
     tags:
       - name: 'console.command'
         command: 'sitemonitor:sites'
