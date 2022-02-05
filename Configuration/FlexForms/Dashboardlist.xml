@@ -56,14 +56,5 @@
 				</el>
 			</ROOT>
 		</sDEF>
-        <texts>
-            <ROOT>
-            <TCEforms>
-					<sheetTitle>Texts</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el></el>
-            </ROOT>
-        </texts>
 	</sheets>
 </T3DataStructure>
