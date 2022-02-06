@@ -23,7 +23,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class ClientgroupRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     protected $defaultOrderings = [
-        'title' => QueryInterface::ORDER_ASCENDING,
+        'sorting' => QueryInterface::ORDER_ASCENDING,
     ];
 
     public function initializeObject()
