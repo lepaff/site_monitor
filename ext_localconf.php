@@ -13,6 +13,17 @@ defined('TYPO3_MODE') || die();
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, search',
         ]
     );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'SiteMonitor',
+        'Generateajax',
+        [
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'generateAjax',
+        ],
+        // non-cacheable actions
+        [
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'generateAjax',
+        ]
+    );
 
     // wizards
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(

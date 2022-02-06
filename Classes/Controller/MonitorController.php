@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LEPAFF\SiteMonitor\Controller;
 
 use LEPAFF\SiteMonitor\Domain\Model\Site;
+use LEPAFF\SiteMonitor\Domain\Model\Client;
 use LEPAFF\SiteMonitor\Domain\Model\Extension;
 use LEPAFF\SiteMonitor\Domain\Model\Extensiondoc;
 use LEPAFF\SiteMonitor\Domain\Model\Extensionversion;
@@ -211,6 +212,43 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @return string|object|null|void
      */
     public function generateAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client) {
+        $generated = $this->executeGenerate($client);
+        if ($generated === true) {
+            $this->redirect(
+                'show',
+                'Monitor',
+                'SiteMonitor',
+                [
+                    'client' => $client
+                ]
+            );
+        }
+    }
+
+    public function generateAjaxAction() {
+        // DebuggerUtility::var_dump($this->request, '$this->request');
+        $arguments = $this->request->getArguments();
+        if (isset($arguments['client'])) {
+            $client = $this->clientRepository->findByUid($arguments['client']);
+            $generated = $this->executeGenerate($client);
+            if ($generated === true) {
+                $this->view->assign('client', $client);
+            }
+        } else {
+            // @todo
+            // error handling
+            $this->view->assign('request', $this->request->getArguments());
+        }
+        // $this->view->assign('request', $this->request->getArguments());
+    }
+
+    /**
+     * execute generate
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
+     * @return string|object|null|void
+     */
+    private function executeGenerate(Client $client) {
         $timeAtStart = microtime(true);
         if ($client->getUrl() === '') {
             // no url set - throw error
@@ -374,14 +412,7 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // DebuggerUtility::var_dump($this->versionTime, '$this->versionTime');
         // DebuggerUtility::var_dump(microtime(true) - $timeAtStart, 'Execution time renderJson');
-        $this->redirect(
-            'show',
-            'Monitor',
-            'SiteMonitor',
-            [
-                'client' => $client
-            ]
-        );
+        return true;
     }
 
     private function buildSlug($record, $tableName, $slugFieldName = 'slug') {
