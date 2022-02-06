@@ -4,28 +4,20 @@
 <f:section name="content">
     <h1>TYPO3 Monitor</h1>
 
-    <f:render partial="Searchbox" arguments="{_all}" />
-
-    <div>
-        <f:for each="{clientgroups}" as="clientgroup">
-            <div style="border: 2px solid #000;">
-                <div>
-                    {clientgroup.title}
-                </div>
-                <f:for each="{clientgroup.clients}" as="groupclient">
-                    <div>
-                        <f:render partial="Client" arguments="{client:groupclient}" />
-                    </div>
-                </f:for>
-            </div>
-        </f:for>
-    </div>
-
     <f:if condition="{showPagination} && ({settings.pagination.position} === '1' || {settings.pagination.position} === '3')">
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
     </f:if>
-    <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
-        <f:render partial="Client/Client" arguments="{client:client}" />
+    <f:for each="{pagination.paginator.paginatedItems}" as="clientgroup" iteration="iterator">
+        <div style="border: 2px solid #000;">
+            <div>
+                {clientgroup.title}
+            </div>
+            <f:for each="{clientgroup.clients}" as="groupclient">
+                <div>
+                    <f:render partial="Client" arguments="{client:groupclient}" />
+                </div>
+            </f:for>
+        </div>
     </f:for>
     <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />

@@ -6,7 +6,7 @@ defined('TYPO3_MODE') || die();
         'SiteMonitor',
         'Dashboardlist',
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list, show, generate, search',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, search',
         ],
         // non-cacheable actions
         [

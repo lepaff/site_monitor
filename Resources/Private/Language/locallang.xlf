@@ -48,6 +48,42 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client.site" resname="tx_sitemonitor_domain_model_client.site">
 				<source>Site</source>
 			</trans-unit>
+			<trans-unit id="sheet.general" resname="sheet.general">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination" resname="sheet.pagination">
+				<source>Pagination</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination.itemsPerPage" resname="sheet.pagination.itemsPerPage">
+				<source>Items per page</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination.maximumLinks" resname="sheet.pagination.maximumLinks">
+				<source>Maximum of displayed links</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination.position" resname="sheet.pagination.position">
+				<source>Position of searchresults</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination.position.ontop" resname="sheet.pagination.position.ontop">
+				<source>On top</source>
+			</trans-unit>
+			<trans-unit id="sheet.pagination.position.atbottom" resname="sheet.pagination.position.atbottom">
+				<source>At bottom</source>
+			</trans-unit>
+			<trans-unit id="conf.action" resname="conf.action">
+				<source>Action</source>
+			</trans-unit>
+			<trans-unit id="conf.action.list" resname="conf.action.list">
+				<source>List</source>
+			</trans-unit>
+			<trans-unit id="conf.action.list" resname="conf.action.list">
+				<source>List</source>
+			</trans-unit>
+			<trans-unit id="conf.action.grouplist" resname="conf.action.grouplist">
+				<source>List by group</source>
+			</trans-unit>
+			<trans-unit id="general.pleaseChoose" resname="general.pleaseChoose">
+				<source>Please choose</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -69,6 +69,15 @@
 			<trans-unit id="tx_sitemonitor_domain_model_extensionversion.versions" resname="tx_sitemonitor_domain_model_extensionversion.versions">
 				<source>Versions</source>
 			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_clientgroup" resname="tx_sitemonitor_domain_model_clientgroup">
+				<source>Clientgroup</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_clientgroup.title" resname="tx_sitemonitor_domain_model_clientgroup.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_clientgroup.clients" resname="tx_sitemonitor_domain_model_clientgroup.clients">
+				<source>Clients</source>
+			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client" resname="tx_sitemonitor_domain_model_client">
 				<source>Client</source>
 			</trans-unit>

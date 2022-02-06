@@ -7,13 +7,48 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>Pagination</sheetTitle>
+					<sheetTitle>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.general</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
+                    <settings.action>
+                        <TCEforms>
+                            <label>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:conf.action</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0">
+                                        <numIndex index="0">LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:general.pleaseChoose</numIndex>
+                                        <numIndex index="1">Monitor->list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:conf.action.list</numIndex>
+                                        <numIndex index="1">Monitor->list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:conf.action.grouplist</numIndex>
+                                        <numIndex index="1">Monitor->grouplist</numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.action>
+				</el>
+			</ROOT>
+		</sDEF>
+        <pagination>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
 					<settings.pagination.itemsPerPage>
 						<TCEforms>
-							<label>Items per page</label>
+							<label>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination.itemsPerPage</label>
 							<config>
 								<type>input</type>
 								<default>10</default>
@@ -24,7 +59,7 @@
 					</settings.pagination.itemsPerPage>
 					<settings.pagination.maximumLinks>
 						<TCEforms>
-							<label>Maximum of displayed links</label>
+							<label>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination.maximumLinks</label>
 							<config>
 								<type>input</type>
 								<default>10</default>
@@ -35,26 +70,26 @@
 					</settings.pagination.maximumLinks>
 					<settings.pagination.position>
 						<TCEforms>
-							<label>Position of searchresults</label>
+							<label>LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination.position</label>
 							<config>
 								<type>check</type>
                                 <cols>inline</cols>
                                 <default>2</default>
 								<items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0">On top</numIndex>
+                                        <numIndex index="0">LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination.position.ontop</numIndex>
                                         <numIndex index="1"></numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">At bottom</numIndex>
+                                        <numIndex index="0">LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:sheet.pagination.position.atbottom</numIndex>
                                         <numIndex index="1"></numIndex>
                                     </numIndex>
                                 </items>
 							</config>
 						</TCEforms>
 					</settings.pagination.position>
-				</el>
-			</ROOT>
-		</sDEF>
+                </el>
+            </ROOT>
+        </pagination>
 	</sheets>
 </T3DataStructure>

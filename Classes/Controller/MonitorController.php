@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -40,6 +41,21 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      */
     protected $persistenceManager;
+
+    /**
+     * clientgroupRepository
+     *
+     * @var \LEPAFF\SiteMonitor\Domain\Repository\ClientgroupRepository
+     */
+    protected $clientgroupRepository = null;
+
+    /**
+     * @param \LEPAFF\SiteMonitor\Domain\Repository\ClientgroupRepository $clientgroupRepository
+     */
+    public function injectClientgroupRepository(\LEPAFF\SiteMonitor\Domain\Repository\ClientgroupRepository $clientgroupRepository)
+    {
+        $this->clientgroupRepository = $clientgroupRepository;
+    }
 
     /**
      * clientRepository
@@ -123,6 +139,11 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function indexAction()
     {
+        $action = explode('->', $this->settings['action']);
+        return (new ForwardResponse($action[1]))
+            ->withControllerName($action[0])
+            ->withExtensionName('SiteMonitor')
+            ->withArguments(['forwarded' => true]);
     }
 
     /**
@@ -133,14 +154,40 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function listAction()
     {
         $request = $this->request;
+        $clientgroups = $this->clientgroupRepository->findAll();
         $clients = $this->clientRepository->findAll();
         $extensions = $this->extensiondocRepository->findNonSysExts();
-        $paginationObjects = $this->getPaginationObjects($this->settings, $request, $clients);
+        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clients);
 
         $this->view->assignMultiple([
             'settings' => $this->settings,
+            'clientgroups' => $clientgroups,
             'extensions' => $extensions,
             'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clients)) ? false : true,
+            'pagination' => [
+                'paginator' => $paginationObjects['paginator'],
+                'pagination' => $paginationObjects['pagination'],
+            ]
+        ]);
+    }
+
+    /**
+     * action grouplist
+     *
+     * @return string|object|null|void
+     */
+    public function grouplistAction()
+    {
+        $request = $this->request;
+        $clientgroups = $this->clientgroupRepository->findAll();
+        $extensions = $this->extensiondocRepository->findNonSysExts();
+        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clientgroups);
+
+        $this->view->assignMultiple([
+            'settings' => $this->settings,
+            'clientgroups' => $clientgroups,
+            'extensions' => $extensions,
+            'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clientgroups)) ? false : true,
             'pagination' => [
                 'paginator' => $paginationObjects['paginator'],
                 'pagination' => $paginationObjects['pagination'],
@@ -467,8 +514,8 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     private function getPaginationObjects($settings, $request, $clients) {
         $paginationObjects = [];
 
-        $paginationObjects['itemsPerPage'] = ((int)$this->settings['pagination']['itemsPerPage'] !== 0) ? (int)$this->settings['pagination']['itemsPerPage'] : 3;
-        $paginationObjects['maximumLinks'] = ((int)$this->settings['pagination']['maximumLinks'] !== 0) ? (int)$this->settings['pagination']['maximumLinks'] : 15;
+        $paginationObjects['itemsPerPage'] = ((int)$settings['itemsPerPage'] !== 0) ? (int)$settings['itemsPerPage'] : 3;
+        $paginationObjects['maximumLinks'] = ((int)$settings['maximumLinks'] !== 0) ? (int)$settings['maximumLinks'] : 15;
         $paginationObjects['currentPage'] = $request->hasArgument('currentPage') ? (int)$request->getArgument('currentPage') : 1;
         $paginationObjects['paginator'] = new QueryResultPaginator($clients, $paginationObjects['currentPage'], $paginationObjects['itemsPerPage']);
         $paginationObjects['pagination'] = new NumberedPagination($paginationObjects['paginator'], $paginationObjects['maximumLinks']);
