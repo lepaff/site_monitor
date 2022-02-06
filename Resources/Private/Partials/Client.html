@@ -21,6 +21,13 @@
                         </f:else>
                     </f:if>
                 </strong>
+                <br/>
+                <p>
+                    <f:link.action action="edit" arguments="{client : client}">Edit client</f:link.action>
+                </p>
+                <p>
+                    <f:link.action action="deleteConfirmation" arguments="{client : client}">Delete client</f:link.action>
+                </p>
             </td>
             <td style="border: 1px solid #000; width: 50%;">
                 <div class="clientStatus" id="clientStatus{client.uid}">

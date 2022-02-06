@@ -21,7 +21,7 @@ return [
         'iconfile' => 'EXT:site_monitor/Resources/Public/Icons/tx_sitemonitor_domain_model_client.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'hidden, title, slug, clientgroup, --div--;URLs, --palette--;;url_general_palette, --palette--;;url_htaccess_palette, --palette--;;url_urls_palette, --div--;Authorization, --palette--;;auth_palette, --div--;Team, owner, developer'],
+        '1' => ['showitem' => 'hidden, title, slug, --div--;URLs, --palette--;;url_general_palette, --palette--;;url_htaccess_palette, --palette--;;url_urls_palette, --div--;Authorization, --palette--;;auth_palette, --div--;Team, owner, developer'],
     ],
     'palettes' => [
         'auth_palette' => [
@@ -246,28 +246,6 @@ return [
                 'size' => 30,
                 'eval' => 'trim',
                 'default' => ''
-            ],
-        ],
-        'clientgroup' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.clientgroup',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'tx_sitemonitor_domain_model_clientgroup',
-                'default' => 0,
-                'multiple' => 0,
-                'fieldControl' => [
-                    'editPopup' => [
-                        'disabled' => false,
-                    ],
-                    'addRecord' => [
-                        'disabled' => false,
-                    ],
-                    'listModule' => [
-                        'disabled' => false,
-                    ],
-                ],
             ],
         ],
         'site' => [

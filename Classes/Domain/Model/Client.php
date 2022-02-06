@@ -129,6 +129,13 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $developer = null;
 
     /**
+     * slug
+     *
+     * @var string
+     */
+    protected $slug = '';
+
+    /**
      * __construct
      */
     public function __construct()
@@ -464,5 +471,26 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getDeveloper()
     {
         return $this->developer;
+    }
+
+    /**
+     * Returns the slug
+     *
+     * @return string $slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Sets the slug
+     *
+     * @param string $slug
+     * @return void
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
     }
 }

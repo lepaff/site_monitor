@@ -584,4 +584,75 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         return $versionStorage;
     }
+
+    /**
+     * action new
+     *
+     * @return string|object|null|void
+     */
+    public function newAction()
+    {
+    }
+
+    /**
+     * action create
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $newClient
+     * @return string|object|null|void
+     */
+    public function createAction(\LEPAFF\SiteMonitor\Domain\Model\Client $newClient)
+    {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->clientRepository->add($newClient);
+        $this->redirect('list');
+    }
+
+    /**
+     * action edit
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("client")
+     * @return string|object|null|void
+     */
+    public function editAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client)
+    {
+        $this->view->assign('client', $client);
+    }
+
+    /**
+     * action update
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
+     * @return string|object|null|void
+     */
+    public function updateAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client)
+    {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->clientRepository->update($client);
+        $this->redirect('list');
+    }
+
+    /**
+     * action delete
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
+     * @return string|object|null|void
+     */
+    public function deleteConfirmationAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client)
+    {
+        $this->view->assign('client', $client);
+    }
+
+    /**
+     * action delete
+     *
+     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
+     * @return string|object|null|void
+     */
+    public function deleteAction(\LEPAFF\SiteMonitor\Domain\Model\Client $client)
+    {
+        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->clientRepository->remove($client);
+        $this->redirect('list');
+    }
 }
