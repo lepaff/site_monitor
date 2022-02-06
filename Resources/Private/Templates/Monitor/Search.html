@@ -10,7 +10,7 @@
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
     </f:if>
     <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
-        <f:render partial="Client/Client" arguments="{client:client}" />
+        <f:render partial="Client" arguments="{client:client}" />
     </f:for>
     <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
