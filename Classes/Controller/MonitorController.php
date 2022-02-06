@@ -214,7 +214,7 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $clients = $this->clientRepository->findAll();
         }
-        $paginationObjects = $this->getPaginationObjects($this->settings, $request, $clients);
+        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clients);
 
         $this->view->assignMultiple([
             'settings' => $this->settings,
