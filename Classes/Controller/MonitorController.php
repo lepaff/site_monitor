@@ -633,7 +633,7 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * action delete
+     * action deleteConfirmation
      *
      * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
      * @return string|object|null|void
