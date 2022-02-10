@@ -11,7 +11,8 @@ defined('TYPO3_MODE') || die();
         // non-cacheable actions
         [
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, search, new, create, edit, update, delete, deleteConfirmation',
-        ]
+        ],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
     );
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'SiteMonitor',
@@ -22,7 +23,8 @@ defined('TYPO3_MODE') || die();
         // non-cacheable actions
         [
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'generateAjax',
-        ]
+        ],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
     );
 
     // wizards
