@@ -139,11 +139,13 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function indexAction()
     {
-        $action = explode('->', $this->settings['action']);
-        return (new ForwardResponse($action[1]))
-            ->withControllerName($action[0])
-            ->withExtensionName('SiteMonitor')
-            ->withArguments(['forwarded' => true]);
+        if($this->settings['action'] && count(explode('->', $this->settings['action'])) > 1) {
+            $action = explode('->', $this->settings['action']);
+            $this->actionForward($action[1], $action[0], 'SiteMonitor', ['forwarded' => true]);
+        } else {
+            $this->actionForward('list', 'Monitor', 'SiteMonitor', ['forwarded' => true]);
+        }
+
     }
 
     /**
@@ -583,6 +585,31 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->versionTime = $this->versionTime + $timeAtStart;
 
         return $versionStorage;
+    }
+
+    /**
+     * action forwarding
+     * @param string $action
+     * @param string $controller
+     * @param string $extension
+     * @param array $arguments
+     */
+    protected function actionForward($action, $controller, $extension, $arguments) {
+        if (class_exists('ForwardResponse')) {
+            // >= TYPO3 11
+            return (new ForwardResponse($action))
+                ->withControllerName($controller)
+                ->withExtensionName($extension)
+                ->withArguments($arguments);
+        } else {
+            // TYPO3 10
+            $this->forward(
+                $action,
+                $controller,
+                $extension,
+                $arguments
+            );
+        }
     }
 
     /**
