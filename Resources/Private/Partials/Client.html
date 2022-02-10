@@ -1,4 +1,7 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"></html>
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:monitor="http://typo3.org/ns/LEPAFF/SiteMonitor/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 <f:variable name="jsonUrl" value="{client.url}/?type={client.typeParam}" />
 <f:comment>@todo get url from controller or settings</f:comment>
 <f:variable name="generateUrl" value="https://typo311.ddev.site/?type=92877376" />
@@ -62,6 +65,18 @@
     <f:link.action action="show" arguments="{client : client}">
         <table width="100%">
             <tr>
+                <f:variable name="ping" value="{monitor:ping(url:client.url)}" />
+                <f:if condition="{ping}">
+                    <f:then>
+                        <td  class="text-ap-green"style="border-bottom: 1px solid #000;">Ping:</td>
+                        <td  class="text-ap-green"style="border-bottom: 1px solid #000;">{ping} ms</td>
+                    </f:then>
+                    <f:else>
+                        <td class="text-ap-red" style="border-bottom: 1px solid #000;" colspan="2">NOT REACHABLE</td>
+                    </f:else>
+                </f:if>
+            </tr>
+            <tr>
                 <td style="border-bottom: 1px solid #000;">Date:</td>
                 <td style="border-bottom: 1px solid #000;"><f:format.date format="d.m.Y H:i">{client.site.0.tstamp}</f:format.date></td>
             </tr>
@@ -96,3 +111,4 @@
         </table>
     </f:link.action>
 </f:section>
+</html>

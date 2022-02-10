@@ -1,6 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:m="http://typo3.org/ns/LEPAFF/SiteMonitor/ViewHelpers"
+    xmlns:monitor="http://typo3.org/ns/LEPAFF/SiteMonitor/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="Default" />
@@ -29,6 +29,18 @@
                 <div class="w-full">
                     <h3>General</h3>
                     <table>
+                        <tr>
+                            <f:variable name="ping" value="{monitor:ping(url:client.url)}" />
+                            <f:if condition="{ping}">
+                                <f:then>
+                                    <td class="text-ap-green">Ping:</td>
+                                    <td class="text-ap-green">{ping} ms</td>
+                                </f:then>
+                                <f:else>
+                                    <td class="text-ap-red" colspan="2">NOT REACHABLE</td>
+                                </f:else>
+                            </f:if>
+                        </tr>
                         <tr>
                             <td><strong>Date</strong></td>
                             <td><f:format.date format="d.m.Y H:i">{site.tstamp}</f:format.date></td>
@@ -207,7 +219,7 @@
 </f:section>
 
 <f:section name="ExtensionRow">
-    <f:variable name="versionUpdate" value="{m:findYoungerExtVersion(extension:extension)}" />
+    <f:variable name="versionUpdate" value="{monitor:findYoungerExtVersion(extension:extension)}" />
     <f:variable name="markUpdatableRow" value="" />
     <f:if condition="{versionUpdate}">
         <f:variable name="markUpdatableRow" value="text-ap-orange" />
@@ -231,7 +243,7 @@
             <f:then>
                 <td>
                     <select name="todo" id="todo">
-                        <f:variable name="versions" value="{m:sortVersions(versions:'{extension.extensionDoc.versions}')}" />
+                        <f:variable name="versions" value="{monitor:sortVersions(versions:'{extension.extensionDoc.versions}')}" />
                         <f:for each="{versions}" as="version" key="uid">
                             <f:if condition="{version} == {extension.versionInstalled}">
                                 <f:then>
