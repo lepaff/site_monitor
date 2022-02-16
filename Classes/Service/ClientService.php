@@ -186,6 +186,10 @@ class ClientService implements SingletonInterface
             $newSite = GeneralUtility::makeInstance(Site::class);
         } else {
             $newSite = $client->getSite()[0];
+            // nothing changed - so do nothing
+            if ($newSite->getTstampUpdated() === $response['lockDate']) {
+                return true;
+            }
         }
         $typo3Context = '';
         if (isset($response['typo3Context'])) {
@@ -244,6 +248,7 @@ class ClientService implements SingletonInterface
         }
         $newSite->setPid(1);
         $newSite->setTstamp(time());
+        $newSite->setTstampUpdated($response['lockDate']);
         $newSite->setTitle($response['websiteTitle']);
         $newSite->setPhpVersion($response['phpVersion']);
         $newSite->setTypo3Version($response['typo3Version']);
