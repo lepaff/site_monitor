@@ -7,14 +7,6 @@ services:
   LEPAFF\SiteMonitor\:
     resource: '../Classes/*'
 
-  LEPAFF\SiteMonitor\Command\SitesCommand:
-    tags:
-      - name: 'console.command'
-        command: 'sitemonitor:sites'
-        description: 'Updates version numbers'
-        # not required, defaults to false
-        hidden: false
-
   LEPAFF\SiteMonitor\Command\UpdateClientsCommand:
     tags:
       - name: 'console.command'
