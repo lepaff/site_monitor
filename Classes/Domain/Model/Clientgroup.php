@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.

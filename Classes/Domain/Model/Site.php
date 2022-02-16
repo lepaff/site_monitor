@@ -60,7 +60,14 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var \DateTime
      */
-    protected $tstamp;#
+    protected $tstamp;
+
+    /**
+     * tstampUpdated
+     *
+     * @var \DateTime
+     */
+    protected $tstampUpdated;
 
     /**
      * slug
@@ -245,6 +252,27 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTstamp(int $tstamp)
     {
         $this->tstamp = $tstamp;
+    }
+
+    /**
+     * Returns the tstampUpdated
+     *
+     * @return int $tstampUpdated
+     */
+    public function getTstampUpdated()
+    {
+        return $this->tstampUpdated;
+    }
+
+    /**
+     * Sets the tstampUpdated
+     *
+     * @param int $tstampUpdated
+     * @return void
+     */
+    public function setTstampUpdated(int $tstampUpdated)
+    {
+        $this->tstampUpdated = $tstampUpdated;
     }
 
     /**

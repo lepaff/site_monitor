@@ -40,6 +40,7 @@ CREATE TABLE tx_sitemonitor_domain_model_site (
 	typo3_context       varchar(255) NOT NULL DEFAULT '',
 	php_version         varchar(255) NOT NULL DEFAULT '',
 	patch_available     varchar(255) NOT NULL DEFAULT '',
+	tstamp_upated       int(11) unsigned DEFAULT '0' NOT NULL,
 	installed_extension text NOT NULL,
 	slug                varchar(255) DEFAULT '' NOT NULL,
 );

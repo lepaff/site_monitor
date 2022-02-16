@@ -109,6 +109,12 @@ return [
                 'type' => 'passthrough',
             ],
         ],
+        'tstamp_updated' => [
+            'label' => 'tstamp_updated',
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
         'title' => [
             'exclude' => true,
             'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_site.title',

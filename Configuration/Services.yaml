@@ -1,8 +1,26 @@
 services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  LEPAFF\SiteMonitor\:
+    resource: '../Classes/*'
+
   LEPAFF\SiteMonitor\Command\SitesCommand:
     tags:
       - name: 'console.command'
         command: 'sitemonitor:sites'
-        description: 'An example description for a command'
+        description: 'Updates version numbers'
+        # not required, defaults to false
+        hidden: false
+
+  LEPAFF\SiteMonitor\Command\UpdateClientsCommand:
+    tags:
+      - name: 'console.command'
+        command: 'sitemonitor:updateclients'
+        description: 'Updates the monitor client data'
+        # not required, defaults to true
+        schedulable: true
         # not required, defaults to false
         hidden: false

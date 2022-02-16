@@ -16,6 +16,15 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class SitesCommand extends Command
 {
     /**
+     * @param ExtensiondocRepository $extensiondocRepository
+     * @required
+     */
+    public function setExtensiondocRepository(ExtensiondocRepository $extensiondocRepository)
+    {
+        $this->extensiondocRepository = $extensiondocRepository;
+    }
+
+    /**
      * Configure the command by defining the name, options and arguments
      */
     protected function configure()
@@ -38,6 +47,7 @@ class SitesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->extensiondocRepository->findAll();
         // $extensionversionRepository = GeneralUtility::makeInstance(ExtensionversionRepository::class);
         $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);

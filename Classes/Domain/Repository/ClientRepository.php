@@ -73,4 +73,17 @@ class ClientRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $query->execute();
     }
+
+    /**
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function findNextToGenerate()
+    {
+        $query = $this->createQuery();
+        $query->setOrderings([
+            'site.tstamp' => QueryInterface::ORDER_DESCENDING,
+        ]);
+
+        return $query->execute();
+    }
 }
