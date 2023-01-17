@@ -4,7 +4,6 @@
     data-namespace-typo3-fluid="true">
 <f:variable name="jsonUrl" value="{client.url}/?type={client.typeParam}" />
 <f:comment>@todo get url from controller or settings</f:comment>
-<f:variable name="generateUrl" value="https://typo311.ddev.site/?type=92877376" />
 <div style="margin-bottom: 20px;" class="siteContainer">
     <table class="tx_sitemonitor" tableborder="1" width="100%">
         <tr>
@@ -45,7 +44,7 @@
                 </div>
             </td>
             <td style="border: 1px solid #000; width: 25%;text-align: center;">
-                <a href="#" class="monitorUpdateButton" data-client="{client.uid}" data-url="{generateUrl}" data-target="clientStatus{client.uid}">Update ajax</a><br/>
+                <a href="#" class="monitorUpdateButton" data-client="{client.uid}" data-url="{client.url}?type={client.typeParam}" data-target="clientStatus{client.uid}">Update ajax</a><br/>
                 <f:if condition="{f:count(subject:client.site)} > 0">
                     <f:then>
                         <f:link.action action="generate" arguments="{client : client}">Update site data</f:link.action>

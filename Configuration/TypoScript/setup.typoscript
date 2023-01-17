@@ -43,6 +43,10 @@ plugin.tx_sitemonitor_dashboardlist {
     }
 }
 
+page.includeJSFooterlibs {
+    monitor = EXT:site_monitor/Resources/Public/Js/monitor.js
+}
+
 config.tx_extbase.persistence.classes {
     \LEPAFF\SiteMonitor\Domain\Model\Site {
         mapping {
