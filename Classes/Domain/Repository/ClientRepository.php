@@ -22,9 +22,9 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class ClientRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-    protected $defaultOrderings = [
-        'sorting' => QueryInterface::ORDER_ASCENDING,
-    ];
+//    protected $defaultOrderings = [
+//        'sorting' => QueryInterface::ORDER_ASCENDING,
+//    ];
 
     public function initializeObject()
     {

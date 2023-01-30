@@ -1,15 +1,19 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div>
-        <f:form action="search">
-            <div>
-                <f:form.textfield name="searchDemand[clientName]" value="{arguments.searchDemand.clientName}" placeholder="Client name" />
-            </div>
-            <div>
-                <f:form.select value="{arguments.searchDemand.extensions}" name="searchDemand[extensions]" options="{extensions}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" />
-            </div>
-            <div>
-                <f:form.submit value="Filter" />
-            </div>
-        </f:form>
+<f:form action="search" class="row mb-4">
+    <div class="col md:w-4/12">
+       <div class="ap-search">
+           <f:form.textfield type="search" name="searchDemand[clientName]" value="{arguments.searchDemand.clientName}" placeholder="Client name" />
+           <i class="fa fa-magnifying-glass"></i>
+       </div>
     </div>
+    <div class="col md:w-4/12">
+        <div class="ap-select relative">
+            <f:form.select value="{arguments.searchDemand.extensions}" name="searchDemand[extensions]" options="{extensions}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" />
+        </div>
+    </div>
+
+    <div class="col md:w-4/12">
+        <f:form.submit value="Filter" class="ap-btn"/>
+    </div>
+</f:form>
 </html>
