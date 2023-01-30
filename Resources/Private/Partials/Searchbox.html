@@ -8,10 +8,19 @@
     </div>
     <div class="col md:w-4/12">
         <div class="ap-select relative">
-            <f:form.select value="{arguments.searchDemand.extensions}" name="searchDemand[extensions]" options="{extensions}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All" />
+            <f:form.select value="{arguments.searchDemand.extensions}" name="searchDemand[extensions]" options="{extensions}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All extensions" />
         </div>
     </div>
-
+    <div class="col md:w-4/12">
+        <div class="ap-select relative">
+            <f:form.select value="{arguments.searchDemand.clientgroups}" name="searchDemand[clientgroups]" options="{clientgroups}" optionValueField="uid" optionLabelField="title" prependOptionLabel="All client groups" />
+        </div>
+    </div>
+    <div class="col md:w-4/12">
+        <div class="ap-select relative">
+            <f:form.select value="{arguments.searchDemand.typo3Versions}" name="searchDemand[typo3Versions]" options="{typo3Versions}" optionValueField="uid" optionLabelField="version" prependOptionLabel="All TYPO3 versions" />
+        </div>
+    </div>
     <div class="col md:w-4/12">
         <f:form.submit value="Filter" class="ap-btn"/>
     </div>

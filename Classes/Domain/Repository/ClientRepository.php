@@ -64,6 +64,12 @@ class ClientRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             if ($filterName === 'extensions' && $filterItem !== '') {
                 $constraints[] = $query->equals('site.installedExtension.extensionDoc.uid', $filterItem);
             }
+            if ($filterName === 'clientgroup' && $filterItem !== '') {
+                $constraints[] = $query->equals('site.clientgroup.uid', $filterItem);
+            }
+            if ($filterName === 'typo3Versions' && $filterItem !== '') {
+                $constraints[] = $query->equals('site.typo3Version', $filterItem);
+            }
         }
         $query->matching(
             $query->logicalOr(
