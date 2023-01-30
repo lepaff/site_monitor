@@ -161,11 +161,21 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $clients = $this->clientRepository->findAll();
         $extensions = $this->extensiondocRepository->findNonSysExts();
         $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clients);
+        $typo3Versions = [];
+        foreach ($clients as $client) {
+            foreach ($client->getSite() as $site) {
+                $versionKey = $site->getTypo3Version();
+                if (!key_exists($versionKey, $typo3Versions)) {
+                    $typo3Versions[$versionKey] = $site->getTypo3Version();
+                }
+            }
+        }
 
         $this->view->assignMultiple([
             'settings' => $this->settings,
             'clientgroups' => $clientgroups,
             'extensions' => $extensions,
+            'typo3Versions' => $typo3Versions,
             'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clients)) ? false : true,
             'pagination' => [
                 'paginator' => $paginationObjects['paginator'],
@@ -209,10 +219,16 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $extensions = $this->extensiondocRepository->findNonSysExts();
         $arguments = $request->getArguments();
         $searchDemand = $request->getArguments()['searchDemand'];
-        if (isset($searchDemand['extensions']) && ($searchDemand['extensions'] === '' && $searchDemand['clientName'] === '')) {
+        $searchDemandValid = false;
+        foreach ($searchDemand as $sd) {
+            if ($sd !== '') {
+                $searchDemandValid = true;
+            }
+        }
+        if ($searchDemandValid === false) {
             $this->redirect('list');
         }
-        if (isset($searchDemand)) {
+        if ($searchDemandValid === true) {
             $clients = $this->clientRepository->findFilteredClients($searchDemand);
         } else {
             $clients = $this->clientRepository->findAll();
