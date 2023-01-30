@@ -1,23 +1,33 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace prov=Ap\Provider\ViewHelpers}
+
 <f:layout name="Default" />
 
 <f:section name="content">
-    <h1>TYPO3 Monitor</h1>
-
     <f:render partial="Searchbox" arguments="{_all}" />
+    <h2>Home</h2>
+    <div class="ap-section--theme-blue rounded p-3">
+        <div class="mb-4 text-right">
+            <f:link.action class="ap-btn" action="new"><i class="fa fa-plus pr-1"></i>New client</f:link.action>
+        </div>
+        <f:if condition="{showPagination} && ({settings.pagination.position} === '1' || {settings.pagination.position} === '3')">
+            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+        </f:if>
+       <div class="row">
+           <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
+               <f:variable name="bgTheme" value="ap-teaser--theme-{prov:randomColor(cycle: client.uid)}"/>
+              <div class="col md:w-4/12 mb-3">
+                  <f:render partial="Client/Teaser" arguments="{client:client, bgTheme: bgTheme}" />
+              </div>
+           </f:for>
+       </div>
+        <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
+            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+        </f:if>
 
-    <f:if condition="{showPagination} && ({settings.pagination.position} === '1' || {settings.pagination.position} === '3')">
-        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
-    </f:if>
-    <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
-        <f:render partial="Client/Teaser" arguments="{client:client}" />
-    </f:for>
-    <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
-        <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
-    </f:if>
+        <div>
 
-    <div>
-        <f:link.action action="new">New client</f:link.action>
+        </div>
     </div>
 
 </f:section>
