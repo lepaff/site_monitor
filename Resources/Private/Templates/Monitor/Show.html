@@ -1,14 +1,13 @@
-<html
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:monitor="http://typo3.org/ns/LEPAFF/SiteMonitor/ViewHelpers"
-    data-namespace-typo3-fluid="true"
->
-<f:layout name="Default" />
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+data-namespace-typo3-fluid="true">
+{namespace monitor=LEPAFF\SiteMonitor\ViewHelpers}
+<f:layout name="Default"/>
 
 <f:section name="content">
     <h1>{site.title}</h1>
 
-    <f:link.action action="list">Back to list</f:link.action><br /><br />
+    <f:link.action action="list">Back to list</f:link.action>
+    <br/><br/>
 
     <f:if condition="{errors.json}">
         <div class="ap-column w-full">
@@ -28,22 +27,24 @@
             <div class="ap-column w-full">
                 <div class="w-full">
                     <h3>General</h3>
-                    <table>
+                    <table class="ap-table">
                         <tr>
-                            <f:variable name="ping" value="{monitor:ping(url:client.url)}" />
+                            <f:variable name="ping" value="{monitor:ping(url:client.url)}"/>
                             <f:if condition="{ping}">
                                 <f:then>
-                                    <td class="text-ap-green">Ping:</td>
-                                    <td class="text-ap-green">{ping} ms</td>
+                                    <td>Ping:</td>
+                                    <td>{ping} ms</td>
                                 </f:then>
                                 <f:else>
-                                    <td class="text-ap-red" colspan="2">NOT REACHABLE</td>
+                                    <td colspan="2">NOT REACHABLE</td>
                                 </f:else>
                             </f:if>
                         </tr>
                         <tr>
                             <td><strong>Date</strong></td>
-                            <td><f:format.date format="d.m.Y H:i">{site.tstamp}</f:format.date></td>
+                            <td>
+                                <f:format.date format="d.m.Y H:i">{site.tstamp}</f:format.date>
+                            </td>
                         </tr>
                         <tr>
                             <td><strong>Title</strong></td>
@@ -52,40 +53,43 @@
                         <tr>
                             <td><strong>Frontend URL</strong></td>
                             <td>
-                                <f:link.typolink parameter="{client.urlFe}" target="_blank">{client.urlFe}</f:link.typolink>
+                                <f:link.typolink parameter="{client.urlFe}" target="_blank">{client.urlFe}
+                                </f:link.typolink>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Backend URL</strong></td>
                             <td>
-                                <f:link.typolink parameter="{client.urlBe}" target="_blank">{client.urlBe}</f:link.typolink>
+                                <f:link.typolink parameter="{client.urlBe}" target="_blank">{client.urlBe}
+                                </f:link.typolink>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Gitlab URL</strong></td>
                             <td>
-                                <f:link.typolink parameter="{client.urlGitlab}" target="_blank">{client.urlGitlab}</f:link.typolink>
+                                <f:link.typolink parameter="{client.urlGitlab}" target="_blank">{client.urlGitlab}
+                                </f:link.typolink>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="ap-column w-full">
-                <div class="flex flex-wrap justify-center -m-1 md:-m-2">
-                    <div class="w-full lg:w-6/12 p-1 md:p-2">
+                <div class="row">
+                    <div class="col lg:w-6/12 mb-3">
                         <h3>System</h3>
-                        <table>
+                        <table class="ap-table w-full">
                             <f:if condition="{site.patchAvailable}">
                                 <f:then>
                                     <tr>
-                                        <td class="text-ap-orange"><strong>TYPO3 Version</strong></td>
-                                        <td class="text-ap-orange">{site.typo3Version}</td>
+                                        <td><strong>TYPO3 Version</strong></td>
+                                        <td>{site.typo3Version}</td>
                                     </tr>
                                 </f:then>
                                 <f:else>
                                     <tr>
-                                        <td class="text-ap-green"><strong>TYPO3 Version</strong></td>
-                                        <td class="text-ap-green">{site.typo3Version}</td>
+                                        <td><strong>TYPO3 Version</strong></td>
+                                        <td>{site.typo3Version}</td>
                                     </tr>
                                 </f:else>
                             </f:if>
@@ -99,20 +103,22 @@
                             </tr>
                             <f:if condition="{site.patchAvailable}">
                                 <tr>
-                                    <td class="text-ap-orange"><strong>Patch available</strong></td>
-                                    <td class="text-ap-orange">{site.patchAvailable}</td>
+                                    <td><strong>Patch available</strong></td>
+                                    <td>{site.patchAvailable}</td>
                                 </tr>
                             </f:if>
                         </table>
                     </div>
-                    <div class="w-full lg:w-6/12 p-1 md:p-2">
+                    <div class="col lg:w-6/12 mb-3">
                         <h3>Team</h3>
                         <strong>Owners</strong>
-                        <table>
+                        <table class="ap-table w-full">
                             <ul>
                                 <f:for each="{client.owner}" as="owner">
                                     <li>
-                                        {owner.name} (<f:link.email email="{owner.email}">{owner.email}</f:link.email>)
+                                        {owner.name} (
+                                        <f:link.email email="{owner.email}">{owner.email}</f:link.email>
+                                        )
                                     </li>
                                 </f:for>
                             </ul>
@@ -122,7 +128,9 @@
                             <ul>
                                 <f:for each="{client.developer}" as="developer">
                                     <li>
-                                        {developer.name} (<f:link.email email="{developer.email}">{developer.email}</f:link.email>)
+                                        {developer.name} (
+                                        <f:link.email email="{developer.email}">{developer.email}</f:link.email>
+                                        )
                                     </li>
                                 </f:for>
                             </ul>
@@ -132,159 +140,85 @@
             </div>
 
             <h3>Extensions</h3>
-            <table>
+            <table class="ap-table">
                 <tr>
-                    <td colspan="2">
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Composer</th>
-                                <th>Installed</th>
-                                <th>update?</th>
-                                <th>Versions</th>
-                                <th>Description</th>
-                                <th>URL</th>
-                            </tr>
-                            <f:for each="{site.installedExtension}" as="extension">
-                                <f:if condition="{extension.extensionDoc} && {extension.extensionDoc.isSysExt} == 0">
-                                    <f:render section="ExtensionRow" arguments="{_all}"></f:render>
-                                </f:if>
-                            </f:for>
-                        </table>
-                    </td>
+                    <th>Title</th>
+                    <th class="w-[145px]">Composer</th>
+                    <th class="w-[145px]">Installed</th>
+                    <th>Versions</th>
+                    <th>Description</th>
+                    <th>URL</th>
                 </tr>
+                <f:for each="{site.installedExtension}" as="extension">
+                    <f:if condition="{extension.extensionDoc} && {extension.extensionDoc.isSysExt} == 0">
+                        <f:render partial="ExtensionList" arguments="{_all}"></f:render>
+                    </f:if>
+                </f:for>
+
             </table>
 
             <f:for each="{site.installedExtension}" as="extension">
                 <f:if condition="{extension.extensionDoc}">
                     <f:else>
                         <f:if condition="{extension.extensionDoc.isSysExt} == 0">
-                            <f:variable name="hasPrivateExtensions" value="1" />
+                            <f:variable name="hasPrivateExtensions" value="1"/>
                         </f:if>
                     </f:else>
                 </f:if>
             </f:for>
             <f:if condition="{hasPrivateExtensions}">
                 <h3>Private extensions (probably...)</h3>
-                <table>
+                <table class="ap-table">
                     <tr>
-                        <td colspan="2">
-                            <table>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Composer</th>
-                                    <th>Installed</th>
-                                </tr>
-                                <f:for each="{site.installedExtension}" as="extension">
-                                    <f:if condition="{extension.extensionDoc}">
-                                        <f:else>
-                                            <f:if condition="{extension.extensionDoc.isSysExt} == 0">
-                                                <f:render section="PrivateExtensionRow" arguments="{_all}"></f:render>
-                                            </f:if>
-                                        </f:else>
-                                    </f:if>
-                                </f:for>
-                            </table>
-                        </td>
+                        <th>Title</th>
+                        <th>Composer</th>
+                        <th>Installed</th>
                     </tr>
+                    <f:for each="{site.installedExtension}" as="extension">
+                        <tr>
+
+                            <f:if condition="{extension.extensionDoc}">
+                                <f:else>
+                                    <f:if condition="{extension.extensionDoc.isSysExt} == 0">
+
+                                        <td>
+                                            {extension.title}
+                                        </td>
+                                        <td>
+                                            {extension.version}
+                                        </td>
+                                        <td>
+                                            {extension.versionInstalled}
+                                        </td>
+
+                                    </f:if>
+                                </f:else>
+                            </f:if>
+                        </tr>
+                    </f:for>
                 </table>
             </f:if>
 
             <h3>System extensions</h3>
-            <table>
+            <table class="ap-table">
                 <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Composer</th>
-                                <th>Installed</th>
-                                <th>update?</th>
-                                <th>Versions</th>
-                                <th>Description</th>
-                                <th>URL</th>
-                            </tr>
-                            <f:for each="{site.installedExtension}" as="extension">
-                                <f:if condition="{extension.extensionDoc} && {extension.extensionDoc.isSysExt} == 1">
-                                    <f:render section="ExtensionRow" arguments="{_all}"></f:render>
-                                </f:if>
-                            </f:for>
-                        </table>
-                    </td>
+                    <th>Title</th>
+                    <th class="w-[145px]">Composer</th>
+                    <th class="w-[145px]">Installed</th>
+                    <th>Versions</th>
+                    <th>Description</th>
+                    <th>URL</th>
                 </tr>
+                <f:for each="{site.installedExtension}" as="extension">
+                  <tr>
+                      <f:if condition="{extension.extensionDoc} && {extension.extensionDoc.isSysExt} == 1">
+                          <f:render partial="ExtensionList" arguments="{_all}"></f:render>
+                      </f:if>
+                  </tr>
+                </f:for>
             </table>
         </f:else>
     </f:if>
 
-</f:section>
-
-<f:section name="ExtensionRow">
-    <f:variable name="versionUpdate" value="{monitor:findYoungerExtVersion(extension:extension)}" />
-    <f:variable name="markUpdatableRow" value="" />
-    <f:if condition="{versionUpdate}">
-        <f:variable name="markUpdatableRow" value="text-ap-orange" />
-    </f:if>
-    <tr class="{markUpdatableRow}">
-        <td>
-            {extension.title}
-        </td>
-        <td>
-            {extension.version}
-        </td>
-        <td>
-            {extension.versionInstalled}
-        </td>
-        <td>
-            <f:if condition="{versionUpdate}">
-                ({versionUpdate})
-            </f:if>
-        </td>
-        <f:if condition="{extension.extensionDoc}">
-            <f:then>
-                <td>
-                    <select name="todo" id="todo">
-                        <f:variable name="versions" value="{monitor:sortVersions(versions:'{extension.extensionDoc.versions}')}" />
-                        <f:for each="{versions}" as="version" key="uid">
-                            <f:if condition="{version} == {extension.versionInstalled}">
-                                <f:then>
-                                    <option selected="selected" value="{uid}">{version}</option>
-                                </f:then>
-                                <f:else>
-                                    <option value="{uid}">{version}</option>
-                                </f:else>
-                            </f:if>
-                        </f:for>
-                    </select>
-                </td>
-                <td>
-                    {extension.extensionDoc.description}
-                </td>
-                <td>
-                    <f:if condition="{extension.extensionDoc.repository}">
-                        <f:link.typolink parameter="{extension.extensionDoc.repository}" target="_blank">{extension.extensionDoc.repository}</f:link.typolink>
-                    </f:if>
-                </td>
-            </f:then>
-            <f:else>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </f:else>
-        </f:if>
-    </tr>
-</f:section>
-
-<f:section name="PrivateExtensionRow">
-    <tr>
-        <td>
-            {extension.title}
-        </td>
-        <td>
-            {extension.version}
-        </td>
-        <td>
-            {extension.versionInstalled}
-        </td>
-    </tr>
 </f:section>
 </html>

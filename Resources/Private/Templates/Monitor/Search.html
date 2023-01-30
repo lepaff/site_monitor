@@ -1,4 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace monitor=LEPAFF\SiteMonitor\ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="content">
@@ -10,7 +11,7 @@
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
     </f:if>
     <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
-        <f:render partial="Client" arguments="{client:client}" />
+        <f:render partial="Client/Teaser" arguments="{client:client}" />
     </f:for>
     <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />

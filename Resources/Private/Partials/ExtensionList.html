@@ -1,0 +1,56 @@
+<f:variable name="versionUpdate" value="{monitor:findYoungerExtVersion(extension:extension)}"/>
+<f:variable name="markUpdatableRow" value=""/>
+<f:if condition="{versionUpdate}">
+    <f:variable name="markUpdatableRow" value="text-ap-orange"/>
+</f:if>
+<tr class="{markUpdatableRow}">
+    <td>
+        {extension.title}
+    </td>
+    <td class="text-center">
+        {extension.version}
+    </td>
+    <td class="text-center">
+        {extension.versionInstalled}
+        <f:if condition="{versionUpdate}">
+            <i class="fa fa-up-long text-green-200"></i> <b class="text-green-200">{versionUpdate}</b>
+        </f:if>
+    </td>
+    <f:if condition="{extension.extensionDoc}">
+        <f:then>
+            <td>
+                <div class="ap-select relative whitespace-nowrap">
+                    <select name="todo" id="todo">
+                        <f:variable name="versions"
+                                    value="{monitor:sortVersions(versions:'{extension.extensionDoc.versions}')}"/>
+                        <f:for each="{versions}" as="version" key="uid">
+                            <f:if condition="{version} == {extension.versionInstalled}">
+                                <f:then>
+                                    <option selected="selected" value="{uid}">{version}</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="{uid}">{version}</option>
+                                </f:else>
+                            </f:if>
+                        </f:for>
+                    </select>
+                </div>
+            </td>
+            <td>
+                {extension.extensionDoc.description}
+            </td>
+            <td class="text-center">
+                <f:if condition="{extension.extensionDoc.repository}">
+                    <f:link.typolink parameter="{extension.extensionDoc.repository}" target="_blank">
+                        Link
+                    </f:link.typolink>
+                </f:if>
+            </td>
+        </f:then>
+        <f:else>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </f:else>
+    </f:if>
+</tr>
