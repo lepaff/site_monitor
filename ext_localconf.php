@@ -1,7 +1,8 @@
 <?php
-defined('TYPO3_MODE') || die();
 
-(static function() {
+defined('TYPO3') || exit;
+
+(static function (): void {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'SiteMonitor',
         'Dashboardlist',
@@ -54,6 +55,6 @@ defined('TYPO3_MODE') || die();
         ['source' => 'EXT:site_monitor/Resources/Public/Icons/user_plugin_dashboardlist.svg']
     );
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['sitemonitor-siteimport'] =
-        \LEPAFF\SiteMonitor\Command\SitesCommandController::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['sitemonitor-siteimport']
+        = \LEPAFF\SiteMonitor\Command\SitesCommandController::class;
 })();

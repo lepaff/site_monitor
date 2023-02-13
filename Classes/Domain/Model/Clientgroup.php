@@ -1,10 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -14,34 +14,29 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Clientgroup
- */
-class Clientgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Clientgroup extends AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * clients
+     * clients.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Client>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<Client>
+     *
+     * @Cascade("remove")
      */
-    protected $clients = null;
+    protected $clients;
 
     /**
-     * __construct
+     * __construct.
      */
     public function __construct()
     {
-
         // Do not remove the next line: It would break the functionality
         $this->initializeObject();
     }
@@ -50,17 +45,15 @@ class Clientgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
+     * You may modify the constructor of this class instead.
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
-        $this->clients = $this->clients ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->clients = $this->clients ?: new ObjectStorage();
     }
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -70,42 +63,35 @@ class Clientgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
-     * @param string $title
-     * @return void
+     * Sets the title.
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Adds a client
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $client
-     * @return void
+     * Adds a client.
      */
-    public function addClient(\LEPAFF\SiteMonitor\Domain\Model\Client $client)
+    public function addClient(Client $client): void
     {
         $this->clients->attach($client);
     }
 
     /**
-     * Removes a client
+     * Removes a client.
      *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $clientToRemove The client to be removed
-     * @return void
+     * @param Client $clientToRemove The client to be removed
      */
-    public function removeClient(\LEPAFF\SiteMonitor\Domain\Model\Client $clientToRemove)
+    public function removeClient(Client $clientToRemove): void
     {
         $this->clients->detach($clientToRemove);
     }
 
     /**
-     * Returns the clients
+     * Returns the clients.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Client> $client
+     * @return ObjectStorage<Client> $client
      */
     public function getClients()
     {
@@ -113,12 +99,11 @@ class Clientgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the clients
+     * Sets the clients.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Client> $client
-     * @return void
+     * @param ObjectStorage<Client> $client
      */
-    public function setClients(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $client)
+    public function setClients(ObjectStorage $client): void
     {
         $this->clients = $client;
     }

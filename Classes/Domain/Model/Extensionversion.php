@@ -1,9 +1,8 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -13,21 +12,17 @@ namespace LEPAFF\SiteMonitor\Domain\Model;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Extensionversion
- */
-class Extensionversion extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Extensionversion extends AbstractEntity
 {
     /**
-     * version
+     * version.
      *
      * @var string
      */
     protected $version = '';
 
     /**
-     * Returns the version
+     * Returns the version.
      *
      * @return string $version
      */
@@ -37,12 +32,9 @@ class Extensionversion extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the version
-     *
-     * @param string $version
-     * @return void
+     * Sets the version.
      */
-    public function setVersion(string $version)
+    public function setVersion(string $version): void
     {
         $this->version = $version;
     }

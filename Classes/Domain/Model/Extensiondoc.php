@@ -1,9 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -13,55 +14,50 @@ namespace LEPAFF\SiteMonitor\Domain\Model;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Extensiondoc
- */
-class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Extensiondoc extends AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * description
+     * description.
      *
      * @var string
      */
     protected $description = '';
 
     /**
-     * repository
+     * repository.
      *
      * @var string
      */
     protected $repository = '';
 
     /**
-     * versions
+     * versions.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<Extensionversion>
+     *
+     * @Cascade("remove")
      */
-    protected $versions = null;
+    protected $versions;
 
     /**
-     * isSysExt
+     * isSysExt.
      *
      * @var int
      */
     protected $isSysExt = '';
 
     /**
-     * __construct
+     * __construct.
      */
     public function __construct()
     {
-
         // Do not remove the next line: It would break the functionality
         $this->initializeObject();
     }
@@ -70,17 +66,15 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
+     * You may modify the constructor of this class instead.
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
-        $this->versions = $this->versions ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->versions = $this->versions ?: new ObjectStorage();
     }
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -90,18 +84,15 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
-     * @param string $title
-     * @return void
+     * Sets the title.
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Returns the description
+     * Returns the description.
      *
      * @return string $description
      */
@@ -111,18 +102,15 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the description
-     *
-     * @param string $description
-     * @return void
+     * Sets the description.
      */
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
     /**
-     * Returns the repository
+     * Returns the repository.
      *
      * @return string $repository
      */
@@ -132,18 +120,15 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the repository
-     *
-     * @param string $repository
-     * @return void
+     * Sets the repository.
      */
-    public function setRepository(string $repository)
+    public function setRepository(string $repository): void
     {
         $this->repository = $repository;
     }
 
     /**
-     * Returns the isSysExt
+     * Returns the isSysExt.
      *
      * @return int $isSysExt
      */
@@ -153,42 +138,35 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the isSysExt
-     *
-     * @param int $isSysExt
-     * @return void
+     * Sets the isSysExt.
      */
-    public function setIsSysExt(int $isSysExt)
+    public function setIsSysExt(int $isSysExt): void
     {
         $this->isSysExt = $isSysExt;
     }
 
     /**
-     * Adds a version
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensionversion $version
-     * @return void
+     * Adds a version.
      */
-    public function addVersion(\LEPAFF\SiteMonitor\Domain\Model\Extensionversion $version)
+    public function addVersion(Extensionversion $version): void
     {
         $this->versions->attach($version);
     }
 
     /**
-     * Removes a version
+     * Removes a version.
      *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensionversion $versionToRemove The versions to be removed
-     * @return void
+     * @param Extensionversion $versionToRemove The versions to be removed
      */
-    public function removeSite(\LEPAFF\SiteMonitor\Domain\Model\Extensionversion $versionToRemove)
+    public function removeSite(Extensionversion $versionToRemove): void
     {
         $this->versions->detach($versionToRemove);
     }
 
     /**
-     * Returns the versions
+     * Returns the versions.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion> $versions
+     * @return ObjectStorage<Extensionversion> $versions
      */
     public function getVersions()
     {
@@ -196,12 +174,11 @@ class Extensiondoc extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the versions
+     * Sets the versions.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extensionversion> $versions
-     * @return void
+     * @param ObjectStorage<Extensionversion> $versions
      */
-    public function setVersions(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $versions)
+    public function setVersions(ObjectStorage $versions): void
     {
         $this->versions = $versions;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace LEPAFF\SiteMonitor\ViewHelpers;
 
 /*
@@ -14,30 +15,25 @@ namespace LEPAFF\SiteMonitor\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Closure;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Sort versions ViewHelper
- *
+ * Sort versions ViewHelper.
  */
 class SortVersionsViewHelper extends AbstractViewHelper
 {
-    public function initializeArguments()
-    {
-        $this->registerArgument('versions', 'array', 'The versions', true);
-    }
-
-   public static function renderStatic(
-       array $arguments,
-       \Closure $renderChildrenClosure,
-       RenderingContextInterface $renderingContext
-   ) {
+    public static function renderStatic(
+        array $arguments,
+        Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $versions = [];
         $versionsDev = [];
-        foreach($arguments['versions'] as $version) {
-            if (substr($version->getVersion(), 0, 4) === 'dev-') {
+
+        foreach ($arguments['versions'] as $version) {
+            if ('dev-' === mb_substr($version->getVersion(), 0, 4)) {
                 $versionsDev[$version->getVersion()] = $version->getVersion();
             } else {
                 $versions[$version->getVersion()] = $version->getVersion();
@@ -45,8 +41,12 @@ class SortVersionsViewHelper extends AbstractViewHelper
         }
         arsort($versions);
         arsort($versionsDev);
-        $out = array_merge($versions, $versionsDev);
 
-        return $out;
-   }
+        return array_merge($versions, $versionsDev);
+    }
+
+     public function initializeArguments(): void
+     {
+         $this->registerArgument('versions', 'array', 'The versions', true);
+     }
 }

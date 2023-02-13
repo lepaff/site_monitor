@@ -1,5 +1,6 @@
 <?php
-defined('TYPO3_MODE') || die();
+
+defined('TYPO3') || exit;
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'SiteMonitor',

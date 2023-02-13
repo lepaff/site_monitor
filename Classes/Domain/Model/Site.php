@@ -1,9 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use DateTime;
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -13,83 +15,78 @@ namespace LEPAFF\SiteMonitor\Domain\Model;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Site
- */
-class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Site extends AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * typo3Version
+     * typo3Version.
      *
      * @var string
      */
     protected $typo3Version = '';
 
     /**
-     * typo3Context
+     * typo3Context.
      *
      * @var string
      */
     protected $typo3Context = '';
 
     /**
-     * phpVersion
+     * phpVersion.
      *
      * @var string
      */
     protected $phpVersion = '';
 
     /**
-     * patchAvailable
+     * patchAvailable.
      *
      * @var string
      */
     protected $patchAvailable = '';
 
     /**
-     * tstamp
+     * tstamp.
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $tstamp;
 
     /**
-     * tstampUpdated
+     * tstampUpdated.
      *
-     * @var \DateTime
+     * @var DateTime
      */
     protected $tstampUpdated;
 
     /**
-     * slug
+     * slug.
      *
      * @var string
      */
     protected $slug = '';
 
     /**
-     * installedExtension
+     * installedExtension.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<Extension>
+     *
+     * @Cascade("remove")
      */
-    protected $installedExtension = null;
+    protected $installedExtension;
 
     /**
-     * __construct
+     * __construct.
      */
     public function __construct()
     {
-
         // Do not remove the next line: It would break the functionality
         $this->initializeObject();
     }
@@ -98,17 +95,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
+     * You may modify the constructor of this class instead.
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
-        $this->installedExtension = $this->installedExtension ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->installedExtension = $this->installedExtension ?: new ObjectStorage();
     }
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -118,18 +113,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
-     * @param string $title
-     * @return void
+     * Sets the title.
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Returns the typo3Version
+     * Returns the typo3Version.
      *
      * @return string $typo3Version
      */
@@ -139,18 +131,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the typo3Version
-     *
-     * @param string $typo3Version
-     * @return void
+     * Sets the typo3Version.
      */
-    public function setTypo3Version(string $typo3Version)
+    public function setTypo3Version(string $typo3Version): void
     {
         $this->typo3Version = $typo3Version;
     }
 
     /**
-     * Returns the typo3Context
+     * Returns the typo3Context.
      *
      * @return string $typo3Context
      */
@@ -160,18 +149,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the typo3Context
-     *
-     * @param string $typo3Context
-     * @return void
+     * Sets the typo3Context.
      */
-    public function setTypo3Context(string $typo3Context)
+    public function setTypo3Context(string $typo3Context): void
     {
         $this->typo3Context = $typo3Context;
     }
 
     /**
-     * Returns the phpVersion
+     * Returns the phpVersion.
      *
      * @return string $phpVersion
      */
@@ -181,18 +167,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the phpVersion
-     *
-     * @param string $phpVersion
-     * @return void
+     * Sets the phpVersion.
      */
-    public function setPhpVersion(string $phpVersion)
+    public function setPhpVersion(string $phpVersion): void
     {
         $this->phpVersion = $phpVersion;
     }
 
     /**
-     * Returns the patchAvailable
+     * Returns the patchAvailable.
      *
      * @return string $patchAvailable
      */
@@ -202,18 +185,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the patchAvailable
-     *
-     * @param string $patchAvailable
-     * @return void
+     * Sets the patchAvailable.
      */
-    public function setPatchAvailable(string $patchAvailable)
+    public function setPatchAvailable(string $patchAvailable): void
     {
         $this->patchAvailable = $patchAvailable;
     }
 
     /**
-     * Returns the slug
+     * Returns the slug.
      *
      * @return string $slug
      */
@@ -223,18 +203,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the slug
-     *
-     * @param string $slug
-     * @return void
+     * Sets the slug.
      */
-    public function setSlug(string $slug)
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
 
     /**
-     * Returns the tstamp
+     * Returns the tstamp.
      *
      * @return int $tstamp
      */
@@ -244,18 +221,15 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the tstamp
-     *
-     * @param int $tstamp
-     * @return void
+     * Sets the tstamp.
      */
-    public function setTstamp(int $tstamp)
+    public function setTstamp(int $tstamp): void
     {
         $this->tstamp = $tstamp;
     }
 
     /**
-     * Returns the tstampUpdated
+     * Returns the tstampUpdated.
      *
      * @return int $tstampUpdated
      */
@@ -265,42 +239,35 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the tstampUpdated
-     *
-     * @param int $tstampUpdated
-     * @return void
+     * Sets the tstampUpdated.
      */
-    public function setTstampUpdated(int $tstampUpdated)
+    public function setTstampUpdated(int $tstampUpdated): void
     {
         $this->tstampUpdated = $tstampUpdated;
     }
 
     /**
-     * Adds a Extension
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtension
-     * @return void
+     * Adds a Extension.
      */
-    public function addInstalledExtension(\LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtension)
+    public function addInstalledExtension(Extension $installedExtension): void
     {
         $this->installedExtension->attach($installedExtension);
     }
 
     /**
-     * Removes a Extension
+     * Removes a Extension.
      *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove The Extension to be removed
-     * @return void
+     * @param Extension $installedExtensionToRemove The Extension to be removed
      */
-    public function removeInstalledExtension(\LEPAFF\SiteMonitor\Domain\Model\Extension $installedExtensionToRemove)
+    public function removeInstalledExtension(Extension $installedExtensionToRemove): void
     {
         $this->installedExtension->detach($installedExtensionToRemove);
     }
 
     /**
-     * Returns the installedExtension
+     * Returns the installedExtension.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension> $installedExtension
+     * @return ObjectStorage<Extension> $installedExtension
      */
     public function getInstalledExtension()
     {
@@ -308,7 +275,7 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the installedExtension as array for JSON view
+     * Returns the installedExtension as array for JSON view.
      *
      * @return array
      */
@@ -318,12 +285,11 @@ class Site extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the installedExtension
+     * Sets the installedExtension.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Extension> $installedExtension
-     * @return void
+     * @param ObjectStorage<Extension> $installedExtension
      */
-    public function setInstalledExtension(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $installedExtension)
+    public function setInstalledExtension(ObjectStorage $installedExtension): void
     {
         $this->installedExtension = $installedExtension;
     }

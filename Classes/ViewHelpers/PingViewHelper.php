@@ -1,4 +1,5 @@
 <?php
+
 namespace LEPAFF\SiteMonitor\ViewHelpers;
 
 /*
@@ -14,35 +15,35 @@ namespace LEPAFF\SiteMonitor\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Closure;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * ping ViewHelper
- *
+ * ping ViewHelper.
  */
 class PingViewHelper extends AbstractViewHelper
 {
-    public function initializeArguments()
-    {
-        $this->registerArgument('url', 'string', 'The url', true);
-    }
-
-   public static function renderStatic(
-       array $arguments,
-       \Closure $renderChildrenClosure,
-       RenderingContextInterface $renderingContext
-   ) {
+    public static function renderStatic(
+        array $arguments,
+        Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $url = explode('://', $arguments['url']);
         $url = explode('/', $url[1]);
-        $ping = shell_exec('ping -c1 ' . $url[0]);
-        if ($ping === null) {
-            return null;
+        $ping = shell_exec('ping -c1 '.$url[0]);
+
+        if (null === $ping) {
+            return;
         }
         $times = explode(' = ', $ping);
         $avg = explode('/', $times[1]);
 
         return $avg[1];
-   }
+    }
+
+     public function initializeArguments(): void
+     {
+         $this->registerArgument('url', 'string', 'The url', true);
+     }
 }

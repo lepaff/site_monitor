@@ -7,7 +7,6 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Michael Paffrath',
     'author_email' => 'michael.paffrath@gmail.com',
     'state' => 'alpha',
-    'clearCacheOnLoad' => 0,
     'version' => '1.0.0',
     'constraints' => [
         'depends' => [

@@ -1,9 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -13,134 +15,131 @@ namespace LEPAFF\SiteMonitor\Domain\Model;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Client
- */
-class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Client extends AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * username
+     * username.
      *
      * @var string
      */
     protected $username = '';
 
     /**
-     * password
+     * password.
      *
      * @var string
      */
     protected $password = '';
 
     /**
-     * secret
+     * secret.
      *
      * @var string
      */
     protected $secret = '';
 
     /**
-     * typeParam
+     * typeParam.
      *
      * @var string
      */
     protected $typeParam = '';
 
     /**
-     * url
+     * url.
      *
      * @var string
      */
     protected $url = '';
 
     /**
-     * htaccess
+     * htaccess.
      *
      * @var bool
      */
     protected $htaccess = false;
 
     /**
-     * htUser
+     * htUser.
      *
      * @var string
      */
     protected $htUser = '';
 
     /**
-     * htPass
+     * htPass.
      *
      * @var string
      */
     protected $htPass = '';
 
     /**
-     * urlFe
+     * urlFe.
      *
      * @var string
      */
     protected $urlFe = '';
 
     /**
-     * urlBe
+     * urlBe.
      *
      * @var string
      */
     protected $urlBe = '';
 
     /**
-     * urlGitlab
+     * urlGitlab.
      *
      * @var string
      */
     protected $urlGitlab = '';
 
     /**
-     * site
+     * site.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<Site>
+     *
+     * @Cascade("remove")
      */
-    protected $site = null;
+    protected $site;
 
     /**
-     * owner
+     * owner.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUser>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<FrontendUser>
+     *
+     * @Cascade("remove")
      */
-    protected $owner = null;
+    protected $owner;
 
     /**
-     * developer
+     * developer.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUser>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * @var ObjectStorage<FrontendUser>
+     *
+     * @Cascade("remove")
      */
-    protected $developer = null;
+    protected $developer;
 
     /**
-     * slug
+     * slug.
      *
      * @var string
      */
     protected $slug = '';
 
     /**
-     * __construct
+     * __construct.
      */
     public function __construct()
     {
-
         // Do not remove the next line: It would break the functionality
         $this->initializeObject();
     }
@@ -149,17 +148,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Initializes all ObjectStorage properties when model is reconstructed from DB (where __construct is not called)
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
+     * You may modify the constructor of this class instead.
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
-        $this->site = $this->site ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->site = $this->site ?: new ObjectStorage();
     }
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -169,18 +166,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
-     * @param string $title
-     * @return void
+     * Sets the title.
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Returns the username
+     * Returns the username.
      *
      * @return string $username
      */
@@ -190,18 +184,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the username
-     *
-     * @param string $username
-     * @return void
+     * Sets the username.
      */
-    public function setUsername(string $username)
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
     /**
-     * Returns the password
+     * Returns the password.
      *
      * @return string $password
      */
@@ -211,18 +202,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the password
-     *
-     * @param string $password
-     * @return void
+     * Sets the password.
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
     /**
-     * Returns the secret
+     * Returns the secret.
      *
      * @return string $secret
      */
@@ -232,18 +220,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the secret
-     *
-     * @param string $secret
-     * @return void
+     * Sets the secret.
      */
-    public function setSecret(string $secret)
+    public function setSecret(string $secret): void
     {
         $this->secret = $secret;
     }
 
     /**
-     * Returns the typeParam
+     * Returns the typeParam.
      *
      * @return string $typeParam
      */
@@ -253,18 +238,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the typeParam
-     *
-     * @param string $typeParam
-     * @return void
+     * Sets the typeParam.
      */
-    public function setTypeParam(string $typeParam)
+    public function setTypeParam(string $typeParam): void
     {
         $this->typeParam = $typeParam;
     }
 
     /**
-     * Returns the url
+     * Returns the url.
      *
      * @return string $url
      */
@@ -274,18 +256,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the url
-     *
-     * @param string $url
-     * @return void
+     * Sets the url.
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): void
     {
         $this->url = $url;
     }
 
     /**
-     * Returns the htaccess
+     * Returns the htaccess.
      *
      * @return bool $htaccess
      */
@@ -295,18 +274,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the htaccess
-     *
-     * @param bool $htaccess
-     * @return void
+     * Sets the htaccess.
      */
-    public function setHtaccess(bool $htaccess)
+    public function setHtaccess(bool $htaccess): void
     {
         $this->htaccess = $htaccess;
     }
 
     /**
-     * Returns the htUser
+     * Returns the htUser.
      *
      * @return string $htUser
      */
@@ -316,18 +292,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the htUser
-     *
-     * @param string $htUser
-     * @return void
+     * Sets the htUser.
      */
-    public function setHtUser(string $htUser)
+    public function setHtUser(string $htUser): void
     {
         $this->htUser = $htUser;
     }
 
     /**
-     * Returns the htPass
+     * Returns the htPass.
      *
      * @return string $htPass
      */
@@ -337,18 +310,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the htPass
-     *
-     * @param string $htPass
-     * @return void
+     * Sets the htPass.
      */
-    public function setHtPass(string $htPass)
+    public function setHtPass(string $htPass): void
     {
         $this->htPass = $htPass;
     }
 
     /**
-     * Returns the urlFe
+     * Returns the urlFe.
      *
      * @return string $urlFe
      */
@@ -358,18 +328,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the urlFe
-     *
-     * @param string $urlFe
-     * @return void
+     * Sets the urlFe.
      */
-    public function setUrlFe(string $urlFe)
+    public function setUrlFe(string $urlFe): void
     {
         $this->urlFe = $urlFe;
     }
 
     /**
-     * Returns the urlBe
+     * Returns the urlBe.
      *
      * @return string $urlBe
      */
@@ -379,18 +346,15 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the urlBe
-     *
-     * @param string $urlBe
-     * @return void
+     * Sets the urlBe.
      */
-    public function setUrlBe(string $urlBe)
+    public function setUrlBe(string $urlBe): void
     {
         $this->urlBe = $urlBe;
     }
 
     /**
-     * Returns the urlGitlab
+     * Returns the urlGitlab.
      *
      * @return string $urlGitlab
      */
@@ -400,42 +364,35 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the urlGitlab
-     *
-     * @param string $urlGitlab
-     * @return void
+     * Sets the urlGitlab.
      */
-    public function setUrlGitlab(string $urlGitlab)
+    public function setUrlGitlab(string $urlGitlab): void
     {
         $this->urlGitlab = $urlGitlab;
     }
 
     /**
-     * Adds a Site
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Site $site
-     * @return void
+     * Adds a Site.
      */
-    public function addSite(\LEPAFF\SiteMonitor\Domain\Model\Site $site)
+    public function addSite(Site $site): void
     {
         $this->site->attach($site);
     }
 
     /**
-     * Removes a Site
+     * Removes a Site.
      *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Site $siteToRemove The Site to be removed
-     * @return void
+     * @param Site $siteToRemove The Site to be removed
      */
-    public function removeSite(\LEPAFF\SiteMonitor\Domain\Model\Site $siteToRemove)
+    public function removeSite(Site $siteToRemove): void
     {
         $this->site->detach($siteToRemove);
     }
 
     /**
-     * Returns the site
+     * Returns the site.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site> $site
+     * @return ObjectStorage<Site> $site
      */
     public function getSite()
     {
@@ -443,20 +400,19 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the site
+     * Sets the site.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\LEPAFF\SiteMonitor\Domain\Model\Site> $site
-     * @return void
+     * @param ObjectStorage<Site> $site
      */
-    public function setSite(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $site)
+    public function setSite(ObjectStorage $site): void
     {
         $this->site = $site;
     }
 
     /**
-     * Returns the owner
+     * Returns the owner.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUser> $owmer
+     * @return ObjectStorage<FrontendUser> $owmer
      */
     public function getOwner()
     {
@@ -464,9 +420,9 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the developer
+     * Returns the developer.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUser> $owmer
+     * @return ObjectStorage<FrontendUser> $owmer
      */
     public function getDeveloper()
     {
@@ -474,7 +430,7 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the slug
+     * Returns the slug.
      *
      * @return string $slug
      */
@@ -484,12 +440,9 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the slug
-     *
-     * @param string $slug
-     * @return void
+     * Sets the slug.
      */
-    public function setSlug(string $slug)
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }

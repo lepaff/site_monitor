@@ -9,6 +9,6 @@ plugin.tx_sitemonitor_dashboard {
     }
     persistence {
         # cat=plugin.tx_sitemonitor_dashboard//a; type=string; label=Default storage PID
-        storagePid = 1
+        storagePid = 6
     }
 }

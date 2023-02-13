@@ -1,4 +1,5 @@
 <?php
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_clientgroup',
@@ -18,42 +19,30 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => 'title,username,password,secret,url',
-        'iconfile' => 'EXT:site_monitor/Resources/Public/Icons/tx_sitemonitor_domain_model_clientgroup.gif'
+        'iconfile' => 'EXT:site_monitor/Resources/Public/Icons/tx_sitemonitor_domain_model_clientgroup.gif',
     ],
     'types' => [
         '1' => ['showitem' => 'hidden, title, clients'],
     ],
     'palettes' => [
         'auth_palette' => [
-            'showitem' => 'username, password, --linebreak--, secret'
+            'showitem' => 'username, password, --linebreak--, secret',
         ],
         'url_general_palette' => [
-            'showitem' => 'url, type_param'
+            'showitem' => 'url, type_param',
         ],
         'url_htaccess_palette' => [
-            'showitem' => 'htaccess, --linebreak--, ht_user, ht_pass'
+            'showitem' => 'htaccess, --linebreak--, ht_user, ht_pass',
         ],
         'url_urls_palette' => [
-            'showitem' => ' url_fe, url_be, --linebreak--, url_gitlab'
+            'showitem' => ' url_fe, url_be, --linebreak--, url_gitlab',
         ],
     ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ]
-                ],
-                'default' => 0,
-            ],
+            'config' => ['type' => 'language'],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -84,8 +73,8 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
             ],
         ],
@@ -98,8 +87,8 @@ return [
                 'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'endtime' => [
@@ -111,11 +100,11 @@ return [
                 'eval' => 'datetime,int',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'title' => [
@@ -125,7 +114,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim, required',
-                'default' => ''
+                'default' => '',
             ],
         ],
         'clients' => [

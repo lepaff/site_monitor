@@ -1,9 +1,8 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -13,43 +12,38 @@ namespace LEPAFF\SiteMonitor\Domain\Model;
  *
  * (c) 2022 Michael Paffrath <michael.paffrath@gmail.com>, Antwerpes AG
  */
-
-/**
- * Extension
- */
-class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Extension extends AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * version
+     * version.
      *
      * @var string
      */
     protected $version = '';
 
     /**
-     * versionInstalled
+     * versionInstalled.
      *
      * @var string
      */
     protected $versionInstalled = '';
 
     /**
-     * extensionDoc
+     * extensionDoc.
      *
-     * @var \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc
+     * @var Extensiondoc
      */
     protected $extensionDoc = '';
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -59,18 +53,15 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
-     * @param string $title
-     * @return void
+     * Sets the title.
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Returns the version
+     * Returns the version.
      *
      * @return string $version
      */
@@ -80,18 +71,15 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the version
-     *
-     * @param string $version
-     * @return void
+     * Sets the version.
      */
-    public function setVersion(string $version)
+    public function setVersion(string $version): void
     {
         $this->version = $version;
     }
 
     /**
-     * Returns the versionInstalled
+     * Returns the versionInstalled.
      *
      * @return string $versionInstalled
      */
@@ -101,20 +89,17 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the versionInstalled
-     *
-     * @param string $versionInstalled
-     * @return void
+     * Sets the versionInstalled.
      */
-    public function setVersionInstalled(string $versionInstalled)
+    public function setVersionInstalled(string $versionInstalled): void
     {
         $this->versionInstalled = $versionInstalled;
     }
 
     /**
-     * Returns the extensionDoc
+     * Returns the extensionDoc.
      *
-     * @return \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
+     * @return Extensiondoc $extensionDoc
      */
     public function getExtensionDoc()
     {
@@ -122,12 +107,9 @@ class Extension extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the extensionDoc
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc
-     * @return void
+     * Sets the extensionDoc.
      */
-    public function setExtensionDoc(\LEPAFF\SiteMonitor\Domain\Model\Extensiondoc $extensionDoc)
+    public function setExtensionDoc(Extensiondoc $extensionDoc): void
     {
         $this->extensionDoc = $extensionDoc;
     }

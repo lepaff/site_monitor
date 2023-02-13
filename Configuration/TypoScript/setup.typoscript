@@ -60,31 +60,31 @@ config.tx_extbase.persistence.classes {
 // PAGE object for regular call (tmp - testing):
 monitorlist_page = PAGE
 monitorlist_page {
-  typeNum = 92877377
-  10 < tt_content.list.20.sitemonitor_dashboardlist
+    typeNum = 92877377
+    10 < tt_content.list.20.sitemonitor_dashboardlist
 
-  config {
-    disableAllHeaderCode = 1
-    additionalHeaders = Content-Type: application/json
-    xhtml_cleaning = 0
-    debug = 0
-    no_cache = 1
-    admPanel = 0
-  }
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders.10.header = Content-Type: application/json
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
 }
 
 // PAGE object for regular call (tmp - testing):
 monitorlist_page = PAGE
 monitorlist_page {
-  typeNum = 92877376
-  10 < tt_content.list.20.sitemonitor_generateajax
+    typeNum = 92877376
+    10 < tt_content.list.20.sitemonitor_generateajax
 
-  config {
-    disableAllHeaderCode = 1
-    additionalHeaders = Content-Type: application/json
-    xhtml_cleaning = 0
-    debug = 0
-    no_cache = 1
-    admPanel = 0
-  }
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders.10.header = Content-Type: application/json
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
 }
