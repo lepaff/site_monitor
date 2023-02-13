@@ -88,3 +88,9 @@ monitorlist_page {
         admPanel = 0
     }
 }
+
+lib.math = TEXT
+lib.math {
+    current = 1
+    prioriCalc = 1
+}

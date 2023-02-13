@@ -1,28 +1,31 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 {namespace prov=Ap\Provider\ViewHelpers}
 
-<f:layout name="Default" />
+<f:layout name="Default"/>
 
 <f:section name="content">
-    <f:render partial="Searchbox" arguments="{_all}" />
+    <f:render partial="Searchbox" arguments="{_all}"/>
     <h2>Home</h2>
     <div class="ap-section--theme-blue rounded p-3">
         <div class="mb-4 text-right">
             <f:link.action class="ap-btn" action="new"><i class="fa fa-plus pr-1"></i>New client</f:link.action>
         </div>
-        <f:if condition="{showPagination} && ({settings.pagination.position} === '1' || {settings.pagination.position} === '3')">
-            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+        <f:if condition="{settings.pagination.position} === '1' || {settings.pagination.position} === '3'">
+            <f:render partial="Pagination" arguments="{pagination: pagination}"/>
         </f:if>
-       <div class="row">
-           <f:for each="{pagination.paginator.paginatedItems}" as="client" iteration="iterator">
-               <f:variable name="bgTheme" value="ap-teaser--theme-{prov:randomColor(cycle: client.uid)}"/>
-              <div class="col md:w-4/12 mb-3">
-                  <f:render partial="Client/Teaser" arguments="{client:client, bgTheme: bgTheme}" />
-              </div>
-           </f:for>
-       </div>
-        <f:if condition="{showPagination} && ({settings.pagination.position} === '2' || {settings.pagination.position} === '3')">
-            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+        <f:if condition="{clients ->f:count()} > 0">
+           <div class="row">
+               <f:for each="{clients}" as="client" iteration="iterator">
+                   <f:variable name="bgTheme" value="ap-teaser--theme-{prov:randomColor(cycle: client.uid)}"/>
+                   <div class="col md:w-4/12 mb-3">
+                       <f:render partial="Client/Teaser" arguments="{client:client, bgTheme: bgTheme}"/>
+                   </div>
+               </f:for>
+           </div>
+        </f:if>
+
+        <f:if condition="{settings.pagination.position} === '2' || {settings.pagination.position} === '3'">
+            <f:render partial="Pagination" arguments="{pagination: pagination}"/>
         </f:if>
 
         <div>

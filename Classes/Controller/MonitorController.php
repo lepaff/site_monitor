@@ -36,6 +36,16 @@ use GeorgRinger\NumberedPagination\NumberedPagination;
 class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     protected $versionTime = 0;
+
+    /** @var int */
+    protected $currentPage = 0;
+
+    /** @var null */
+    protected $limit;
+
+    /** @var int */
+    protected $offset = 0;
+
     /**
      * persistence manager
      *
@@ -134,6 +144,21 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
+     * Setting the basic pagination variables.
+     */
+    protected function initializeAction(): void
+    {
+        $arguments = $this->request->getArguments();
+
+        $this->limit = (int) $this->settings['pagination']['itemsPerPage'];
+
+        if (array_key_exists('currentPage', $arguments) && $arguments['currentPage'] > 0) {
+            $this->currentPage = $arguments['currentPage'];
+            $this->offset = $this->limit * $this->currentPage;
+        }
+    }
+
+    /**
      * action index
      *
      * @return string|object|null|void
@@ -156,13 +181,14 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function listAction()
     {
-        $request = $this->request;
+        $overwriteDemand = [];
         $clientgroups = $this->clientgroupRepository->findAll();
-        $clients = $this->clientRepository->findAll();
+        $queryResult = $this->clientRepository->findByDemand($this->limit, $this->offset, $overwriteDemand);
         $extensions = $this->extensiondocRepository->findNonSysExts();
-        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clients);
+        $pagination = $this->getPaginationVariables($queryResult);
+
         $typo3Versions = [];
-        foreach ($clients as $client) {
+        foreach ($queryResult['results'] as $client) {
             foreach ($client->getSite() as $site) {
                 $versionKey = $site->getTypo3Version();
                 if (!key_exists($versionKey, $typo3Versions)) {
@@ -170,17 +196,15 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
             }
         }
+//        die();
 
         $this->view->assignMultiple([
             'settings' => $this->settings,
             'clientgroups' => $clientgroups,
             'extensions' => $extensions,
             'typo3Versions' => $typo3Versions,
-            'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clients)) ? false : true,
-            'pagination' => [
-                'paginator' => $paginationObjects['paginator'],
-                'pagination' => $paginationObjects['pagination'],
-            ]
+            'pagination' => $pagination,
+            'clients' => $queryResult['results']
         ]);
     }
 
@@ -309,18 +333,6 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
     }
 
-    private function getPaginationObjects($settings, $request, $clients) {
-        $paginationObjects = [];
-
-        $paginationObjects['itemsPerPage'] = ((int)$settings['itemsPerPage'] !== 0) ? (int)$settings['itemsPerPage'] : 3;
-        $paginationObjects['maximumLinks'] = ((int)$settings['maximumLinks'] !== 0) ? (int)$settings['maximumLinks'] : 15;
-        $paginationObjects['currentPage'] = $request->hasArgument('currentPage') ? (int)$request->getArgument('currentPage') : 1;
-        $paginationObjects['paginator'] = new QueryResultPaginator($clients, $paginationObjects['currentPage'], $paginationObjects['itemsPerPage']);
-        $paginationObjects['pagination'] = new NumberedPagination($paginationObjects['paginator'], $paginationObjects['maximumLinks']);
-
-        return $paginationObjects;
-    }
-
     /**
      * action forwarding
      * @param string $action
@@ -415,5 +427,35 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->clientRepository->remove($client);
         $this->redirect('list');
+    }
+
+    /**
+     * @param mixed $queryResult
+     *
+     * @return array
+     */
+    protected function getPaginationVariables($queryResult)
+    {
+        $maxPages = ceil($queryResult['maxItems'] / $this->limit);
+        $paginationLimit = 2;
+
+        if ($this->currentPage + $paginationLimit < $maxPages - 1) {
+            $pagination['hasMorePages'] = true;
+        }
+
+        $i = $this->currentPage - 1 <= 0 ? 1 : $this->currentPage - 1;
+
+        if ($i >= 2) {
+            $pagination['hasLessPages'] = true;
+        }
+
+        while ($i <= $maxPages && $i <= $this->currentPage + $paginationLimit + 1) {
+            $pagination['pages'][$i - 1] = $i;
+            ++$i;
+        }
+        $pagination['currentPage'] = $this->currentPage;
+        $pagination['maxPages'] = $maxPages - 1;
+
+        return $pagination;
     }
 }

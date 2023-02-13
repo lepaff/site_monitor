@@ -100,4 +100,15 @@ class ClientRepository extends Repository
 
         return $query->execute();
     }
+
+    public function findByDemand(?int $limit = null, ?int $offset = null, ?array $overwriteDemand = null){
+        $query = $this->createQuery();
+
+        $queryObject['maxItems'] = $query->count();
+        $query->setOffset($offset);
+        $query->setLimit($limit);
+        $queryObject['results'] = $query->execute();
+
+        return $queryObject;
+    }
 }
