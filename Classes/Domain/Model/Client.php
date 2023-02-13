@@ -65,9 +65,9 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * htaccess
      *
-     * @var int
+     * @var bool
      */
-    protected $htaccess = '';
+    protected $htaccess = false;
 
     /**
      * htUser
@@ -287,7 +287,7 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the htaccess
      *
-     * @return int $htaccess
+     * @return bool $htaccess
      */
     public function getHtaccess()
     {
@@ -297,10 +297,10 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the htaccess
      *
-     * @param int $htaccess
+     * @param bool $htaccess
      * @return void
      */
-    public function setHtaccess(int $htaccess)
+    public function setHtaccess(bool $htaccess)
     {
         $this->htaccess = $htaccess;
     }
