@@ -7,11 +7,11 @@ defined('TYPO3') || exit;
         'SiteMonitor',
         'Dashboardlist',
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, search, new, create, edit, update, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, new, create, edit, update, delete, deleteConfirmation',
         ],
         // non-cacheable actions
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, search, new, create, edit, update, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, list, new, create, edit, update, delete, deleteConfirmation',
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
     );

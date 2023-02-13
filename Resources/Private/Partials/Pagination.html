@@ -4,15 +4,13 @@
         <f:if condition="{pagination.currentPage} >= 1">
             <f:then>
                 <f:variable name="prevPage" value="<f:cObject typoscriptObjectPath='lib.math' data='{pagination.currentPage}-1'/>"/>
-
-                <a href="{f:uri.action(action: 'list', arguments: {currentPage: '{prevPage}', overwriteDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Prev Page" type="button">
+                <a href="{f:uri.action(action: 'list', arguments: {currentPage: '{prevPage}', searchDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Prev Page" type="button">
                     <i class="fa fa-chevron-left"></i>
                 </a>
             </f:then>
             <f:else>
                 <span class="button button-pagination arrow disabled"> <i class="fa fa-chevron-left"></i></span>
             </f:else>
-
         </f:if>
 
         <f:if condition="{pagination.hasLessPages}">
@@ -25,7 +23,7 @@
                     <span class="button button-pagination active disabled">{item}</span>
                 </f:then>
                 <f:else>
-                    <a href="{f:uri.action(action: 'list', arguments: {currentPage: key, overwriteDemand: overwriteDemand})}" class="js-pagination button button-pagination" type="button">
+                    <a href="{f:uri.action(action: 'list', arguments: {currentPage: key, searchDemand: overwriteDemand})}" class="js-pagination button button-pagination" type="button">
                         {item}
                     </a>
                 </f:else>
@@ -37,7 +35,7 @@
         <f:if condition="{pagination.currentPage} < {pagination.maxPages}">
             <f:then>
                 <f:variable name="nextPage" value="<f:cObject typoscriptObjectPath='lib.math' data='{pagination.currentPage}+1'/>"/>
-                <a href="{f:uri.action(action: 'list', pageType:settings.ajax.mediathek, arguments: {currentPage: '{nextPage}', overwriteDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Next Page" type="button">
+                <a href="{f:uri.action(action: 'list', pageType:settings.ajax.mediathek, arguments: {currentPage: '{nextPage}', searchDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Next Page" type="button">
                     <i class="fa fa-chevron-right"></i>
                 </a>
             </f:then>

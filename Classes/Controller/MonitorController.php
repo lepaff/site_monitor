@@ -181,7 +181,9 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function listAction()
     {
-        $overwriteDemand = [];
+        $request = $this->request;
+        $arguments = $request->getArguments();
+        $overwriteDemand = array_key_exists('searchDemand', $arguments) ? $arguments['searchDemand'] : [];
         $clientgroups = $this->clientgroupRepository->findAll();
         $queryResult = $this->clientRepository->findByDemand($this->limit, $this->offset, $overwriteDemand);
         $extensions = $this->extensiondocRepository->findNonSysExts();
@@ -196,10 +198,10 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
             }
         }
-//        die();
 
         $this->view->assignMultiple([
             'settings' => $this->settings,
+            'overwriteDemand' => $overwriteDemand,
             'clientgroups' => $clientgroups,
             'extensions' => $extensions,
             'typo3Versions' => $typo3Versions,
@@ -225,45 +227,6 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             'clientgroups' => $clientgroups,
             'extensions' => $extensions,
             'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clientgroups)) ? false : true,
-            'pagination' => [
-                'paginator' => $paginationObjects['paginator'],
-                'pagination' => $paginationObjects['pagination'],
-            ]
-        ]);
-    }
-
-    /**
-     * action search
-     *
-     * @return string|object|null|void
-     */
-    public function searchAction()
-    {
-        $request = $this->request;
-        $extensions = $this->extensiondocRepository->findNonSysExts();
-        $arguments = $request->getArguments();
-        $searchDemand = $request->getArguments()['searchDemand'];
-        $searchDemandValid = false;
-        foreach ($searchDemand as $sd) {
-            if ($sd !== '') {
-                $searchDemandValid = true;
-            }
-        }
-        if ($searchDemandValid === false) {
-            $this->redirect('list');
-        }
-        if ($searchDemandValid === true) {
-            $clients = $this->clientRepository->findFilteredClients($searchDemand);
-        } else {
-            $clients = $this->clientRepository->findAll();
-        }
-        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clients);
-
-        $this->view->assignMultiple([
-            'settings' => $this->settings,
-            'extensions' => $extensions,
-            'arguments' => $arguments,
-            'showPagination' => ($paginationObjects['itemsPerPage'] >= count($clients)) ? false : true,
             'pagination' => [
                 'paginator' => $paginationObjects['paginator'],
                 'pagination' => $paginationObjects['pagination'],

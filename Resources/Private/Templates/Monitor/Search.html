@@ -5,7 +5,7 @@
 <f:section name="content">
     <h1>TYPO3 Monitor (Search)</h1>
 
-    <f:render partial="Searchbox" arguments="{_all}" />
+    <f:render partial="Filter" arguments="{_all}" />
 
     <f:if condition="{showPagination} && ({settings.pagination.position} === '1' || {settings.pagination.position} === '3')">
         <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />

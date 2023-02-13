@@ -7,6 +7,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -103,6 +104,31 @@ class ClientRepository extends Repository
 
     public function findByDemand(?int $limit = null, ?int $offset = null, ?array $overwriteDemand = null){
         $query = $this->createQuery();
+        $constraints = [];
+
+        if(array_key_exists('clientName', $overwriteDemand) && $overwriteDemand['clientName'] !== ''){
+            $constraints[] = $query->like('title', '%'.$overwriteDemand['clientName'].'%');
+        }
+
+        if(array_key_exists('extensions', $overwriteDemand) && $overwriteDemand['extensions'] !== ''){
+            $constraints[] = $query->equals('site.installedExtension.extensionDoc.uid', $overwriteDemand['extensions']);
+        }
+
+        if(array_key_exists('clientgroup', $overwriteDemand) && $overwriteDemand['clientgroup'] !== ''){
+            $constraints[] = $query->equals('site.clientgroup.uid', $overwriteDemand['clientgroup']);
+        }
+
+        if(array_key_exists('typo3Versions', $overwriteDemand) && $overwriteDemand['typo3Versions'] !== ''){
+            $constraints[] = $query->equals('site.typo3Version', $overwriteDemand['typo3Versions']);
+        }
+
+        if(count($constraints) > 0){
+            $query->matching(
+                $query->logicalAnd(
+                    $constraints
+                )
+            );
+        }
 
         $queryObject['maxItems'] = $query->count();
         $query->setOffset($offset);
