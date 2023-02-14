@@ -1,46 +1,46 @@
-
+<f:variable name="paginationClass" value="ap-teaser--link bg-blue-300 mx-0.5 hover:bg-blue-200 transition-colors w-4 h-4 rounded-full inline-flex items-center justify-center no-underline"/>
 <f:if condition=" {pagination.pages -> f:count()} > 1" >
     <div class="text-center mt-6">
         <f:if condition="{pagination.currentPage} >= 1">
             <f:then>
                 <f:variable name="prevPage" value="<f:cObject typoscriptObjectPath='lib.math' data='{pagination.currentPage}-1'/>"/>
-                <a href="{f:uri.action(action: 'list', arguments: {currentPage: '{prevPage}', searchDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Prev Page" type="button">
+                <a href="{f:uri.action(action: 'list', arguments: {currentPage: '{prevPage}', searchDemand: overwriteDemand})}" class="mr-2"  aria-label="Prev Page" type="button">
                     <i class="fa fa-chevron-left"></i>
                 </a>
             </f:then>
             <f:else>
-                <span class="button button-pagination arrow disabled"> <i class="fa fa-chevron-left"></i></span>
+                <span class="mr-2 opacity-25 pointer-events-none"> <i class="fa fa-chevron-left"></i></span>
             </f:else>
         </f:if>
 
         <f:if condition="{pagination.hasLessPages}">
-            <span class="button button-pagination disabled dots">...</span>
+            <span class="mx-0.5">...</span>
         </f:if>
 
         <f:for each="{pagination.pages}" as="item" key="key" iteration="iterator">
             <f:if condition="{pagination.currentPage} == {key}">
                 <f:then>
-                    <span class="button button-pagination active disabled">{item}</span>
+                    <span class="{paginationClass} !bg-blue-200">{item}</span>
                 </f:then>
                 <f:else>
-                    <a href="{f:uri.action(action: 'list', arguments: {currentPage: key, searchDemand: overwriteDemand})}" class="js-pagination button button-pagination" type="button">
+                    <a href="{f:uri.action(action: 'list', arguments: {currentPage: key, searchDemand: overwriteDemand})}" class="{paginationClass}" type="button">
                         {item}
                     </a>
                 </f:else>
             </f:if>
         </f:for>
         <f:if condition="{pagination.hasMorePages}">
-            <span class="button button-pagination disabled dots">...</span>
+            <span class="mx-0.5">...</span>
         </f:if>
         <f:if condition="{pagination.currentPage} < {pagination.maxPages}">
             <f:then>
                 <f:variable name="nextPage" value="<f:cObject typoscriptObjectPath='lib.math' data='{pagination.currentPage}+1'/>"/>
-                <a href="{f:uri.action(action: 'list', pageType:settings.ajax.mediathek, arguments: {currentPage: '{nextPage}', searchDemand: overwriteDemand})}" class="js-pagination button button-pagination arrow"  aria-label="Next Page" type="button">
+                <a href="{f:uri.action(action: 'list', pageType:settings.ajax.mediathek, arguments: {currentPage: '{nextPage}', searchDemand: overwriteDemand})}" class="ml-2"  aria-label="Next Page" type="button">
                     <i class="fa fa-chevron-right"></i>
                 </a>
             </f:then>
             <f:else>
-                <span class="button button-pagination arrow disabled"> <i class="fa fa-chevron-right"></i></span>
+                <span class="ml-2 opacity-25 pointer-events-none"> <i class="fa fa-chevron-right"></i></span>
             </f:else>
         </f:if>
     </div>
