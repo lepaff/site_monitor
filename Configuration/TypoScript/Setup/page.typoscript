@@ -1,0 +1,7 @@
+##############
+#### Page ####
+##############
+
+page.includeJSFooterlibs {
+    monitor = EXT:site_monitor/Resources/Public/Js/monitor.js
+}

@@ -8,6 +8,12 @@ defined('TYPO3') || exit;
     'Monitor dashboardlist'
 );
 
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'SiteMonitor',
+        'ClientCreate',
+        'Create new Client'
+    );
+
 $materialPluginSignature = 'sitemonitor_dashboardlist';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$materialPluginSignature] = 'layout,select_key,recursive';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$materialPluginSignature] = 'pi_flexform';

@@ -7,9 +7,6 @@
     <f:render partial="Filter" arguments="{_all}"/>
     <h2>Home</h2>
     <div class="ap-section--theme-blue rounded p-3">
-        <div class="mb-4 text-right">
-            <f:link.action class="ap-btn" action="new"><i class="fa fa-plus pr-1"></i>New client</f:link.action>
-        </div>
         <f:if condition="{settings.pagination.position} === '1' || {settings.pagination.position} === '3'">
             <f:render partial="Pagination" arguments="{pagination: pagination, overwriteDemand: overwriteDemand}"/>
         </f:if>

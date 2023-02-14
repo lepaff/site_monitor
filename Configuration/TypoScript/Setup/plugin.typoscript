@@ -1,9 +1,8 @@
-#####################
-#### Setup Files ####
-#####################
-#<INCLUDE_TYPOSCRIPT: source="FILE:EXT:site-monitor/Configuration/TypoScript/Setup/lib.typoscript">
+################
+#### Plugin ####
+################
 
-plugin.tx_sitemonitor_dashboard {
+plugin.tx_sitemonitor {
     view {
         templateRootPaths.0 = EXT:site_monitor/Resources/Private/Templates/
         templateRootPaths.1 = {$plugin.tx_sitemonitor_dashboard.view.templateRootPath}
@@ -16,28 +15,7 @@ plugin.tx_sitemonitor_dashboard {
         storagePid = {$plugin.tx_sitemonitor_dashboard.persistence.storagePid}
         #recursive = 1
     }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
-plugin.tx_sitemonitor_dashboardlist {
-    view {
-        templateRootPaths.0 = EXT:site_monitor/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_sitemonitor_dashboard.view.templateRootPath}
-        partialRootPaths.0 = EXT:site_monitor/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_sitemonitor_dashboard.view.partialRootPath}
-        layoutRootPaths.0 = EXT:site_monitor/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_sitemonitor_dashboard.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_sitemonitor_dashboard.persistence.storagePid}
-        #recursive = 1
-    }
+
     features {
         #skipDefaultArguments = 1
         # if set to 1, the enable fields are ignored in BE context
@@ -48,19 +26,10 @@ plugin.tx_sitemonitor_dashboardlist {
     }
 }
 
-page.includeJSFooterlibs {
-    monitor = EXT:site_monitor/Resources/Public/Js/monitor.js
-}
+plugin.tx_sitemonitor_dashboard < plugin.tx_sitemonitor
+plugin.tx_sitemonitor_dashboardlist < plugin.tx_sitemonitor
+plugin.tx_sitemonitor_clientcreate < plugin.tx_sitemonitor
 
-config.tx_extbase.persistence.classes {
-    \LEPAFF\SiteMonitor\Domain\Model\Site {
-        mapping {
-            tableName = tx_sitemonitor_domain_model_site
-            columns.tstamp.mapOnProperty = tstamp
-            columns.crdate.mapOnProperty = crdate
-        }
-    }
-}
 
 // PAGE object for regular call (tmp - testing):
 monitorlist_page = PAGE
@@ -92,10 +61,4 @@ monitorlist_page {
         no_cache = 1
         admPanel = 0
     }
-}
-
-lib.math = TEXT
-lib.math {
-    current = 1
-    prioriCalc = 1
 }

@@ -321,27 +321,7 @@ class MonitorController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
     }
 
-    /**
-     * action new
-     *
-     * @return string|object|null|void
-     */
-    public function newAction()
-    {
-    }
 
-    /**
-     * action create
-     *
-     * @param \LEPAFF\SiteMonitor\Domain\Model\Client $newClient
-     * @return string|object|null|void
-     */
-    public function createAction(\LEPAFF\SiteMonitor\Domain\Model\Client $newClient)
-    {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->clientRepository->add($newClient);
-        $this->redirect('list');
-    }
 
     /**
      * action edit
