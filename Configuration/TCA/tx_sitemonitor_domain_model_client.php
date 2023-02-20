@@ -22,14 +22,14 @@ return [
         'iconfile' => 'EXT:site_monitor/Resources/Public/Icons/tx_sitemonitor_domain_model_client.gif',
     ],
     'types' => [
-        '1' => ['showitem' => 'hidden, title, slug, --div--;URLs, --palette--;;url_general_palette, --palette--;;url_htaccess_palette, --palette--;;url_urls_palette, --div--;Authorization, --palette--;;auth_palette, --div--;Team, owner, developer'],
+        '1' => ['showitem' => 'hidden, title, slug, clientgroup, --div--;URLs, --palette--;;url_general_palette, --palette--;;url_urls_palette, --div--;Authorization, --palette--;;url_htaccess_palette, --div--;Team, owner, developer'],
     ],
     'palettes' => [
         'auth_palette' => [
-            'showitem' => 'username, password, --linebreak--, secret',
+            'showitem' => 'username, password',
         ],
         'url_general_palette' => [
-            'showitem' => 'url, type_param',
+            'showitem' => 'url, type_param, --linebreak--, secret',
         ],
         'url_htaccess_palette' => [
             'showitem' => 'htaccess, --linebreak--, ht_user, ht_pass',
@@ -125,6 +125,7 @@ return [
                 'size' => 30,
                 'eval' => 'trim',
                 'default' => '',
+                'displayCond' => 'FIELD:htaccess:REQ:true',
             ],
         ],
         'password' => [
@@ -335,6 +336,19 @@ return [
                     'listModule' => [
                         'disabled' => true,
                     ],
+                ],
+            ],
+        ],
+        'clientgroup' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_clientgroup',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_sitemonitor_domain_model_clientgroup',
+                'size' => 1,
+                'items' => [
+                    ['', '']
                 ],
             ],
         ],

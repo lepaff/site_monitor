@@ -178,32 +178,6 @@ class MonitorController extends ActionController
     }
 
     /**
-     * action grouplist.
-     *
-     * @return null|object|string|void
-     */
-    public function grouplistAction(): ResponseInterface
-    {
-        $request = $this->request;
-        $clientgroups = $this->clientgroupRepository->findAll();
-        $extensions = $this->extensiondocRepository->findNonSysExts();
-        $paginationObjects = $this->getPaginationObjects($this->settings['pagination'], $request, $clientgroups);
-
-        $this->view->assignMultiple([
-            'settings' => $this->settings,
-            'clientgroups' => $clientgroups,
-            'extensions' => $extensions,
-            'showPagination' => $paginationObjects['itemsPerPage'] < count($clientgroups),
-            'pagination' => [
-                'paginator' => $paginationObjects['paginator'],
-                'pagination' => $paginationObjects['pagination'],
-            ],
-        ]);
-
-        return $this->htmlResponse();
-    }
-
-    /**
      * action show.
      *
      * @return null|object|string|void
