@@ -1,7 +1,7 @@
 {
     "name": "lepaff/site-monitor",
     "type": "typo3-cms-extension",
-    "description": "Extension to monitor (TYPO3) websites",
+    "description": "Extension to monitor TYPO3 websites",
     "authors": [
         {
             "name": "Michael Paffrath",
