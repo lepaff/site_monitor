@@ -136,6 +136,15 @@ class Client extends AbstractEntity
     protected $slug = '';
 
     /**
+     * clientgroup.
+     *
+     * @var ObjectStorage<Clientgroup>
+     *
+     * @Cascade("remove")
+     */
+    protected $clientgroup;
+
+    /**
      * __construct.
      */
     public function __construct()
@@ -427,6 +436,24 @@ class Client extends AbstractEntity
     public function getDeveloper()
     {
         return $this->developer;
+    }
+
+    /**
+     * Returns the clientgroup.
+     *
+     * @return ObjectStorage<Clientgroup> $clientgroup
+     */
+    public function getClientgroup()
+    {
+        return $this->clientgroup;
+    }
+
+    /**
+     * Sets the clientgroup.
+     */
+    public function setClientgroup()
+    {
+        $this->clientgroup = $clientgroup;
     }
 
     /**
