@@ -1,5 +1,5 @@
 {
-    "name": "lepaff/site-monitor",
+    "name": "lepaff/site_monitor",
     "type": "typo3-cms-extension",
     "description": "Extension to monitor TYPO3 websites",
     "authors": [
@@ -21,7 +21,7 @@
         }
     },
     "replace": {
-        "typo3-ter/site-monitor": "self.version"
+        "typo3-ter/site_monitor": "self.version"
     },
     "config": {
         "vendor-dir": ".Build/vendor",
