@@ -1,117 +1,107 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace LEPAFF\SiteMonitor\Service;
 
-use LEPAFF\SiteMonitor\Domain\Model\Site;
 use LEPAFF\SiteMonitor\Domain\Model\Extension;
 use LEPAFF\SiteMonitor\Domain\Model\Extensiondoc;
 use LEPAFF\SiteMonitor\Domain\Model\Extensionversion;
+use LEPAFF\SiteMonitor\Domain\Model\Site;
 use LEPAFF\SiteMonitor\Domain\Repository\ClientRepository;
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository;
+use LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository;
+use LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository;
+use LEPAFF\SiteMonitor\Domain\Repository\SiteRepository;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
+use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * @internal only to be used within Extbase, not part of TYPO3 Core API.
+ * @internal only to be used within Extbase, not part of TYPO3 Core API
  */
 class ClientService implements SingletonInterface
 {
     /**
-     * siteRepository
+     * siteRepository.
      *
-     * @var \LEPAFF\SiteMonitor\Domain\Repository\ClientRepository
+     * @var ClientRepository
      */
-    protected $clientRepository = null;
+    protected $clientRepository;
 
     /**
-     * @param \LEPAFF\SiteMonitor\Domain\Repository\ClientRepository $clientRepository
+     * siteRepository.
+     *
+     * @var SiteRepository
      */
+    protected $siteRepository;
+
+    /**
+     * extensionRepository.
+     *
+     * @var ExtensionRepository
+     */
+    protected $extensionRepository;
+
+    /**
+     * extensiondocRepository.
+     *
+     * @var ExtensiondocRepository
+     */
+    protected $extensiondocRepository;
+
+    /**
+     * extensionversionRepository.
+     *
+     * @var ExtensionversionRepository
+     */
+    protected $extensionversionRepository;
+
     public function injectClientRepository(ClientRepository $clientRepository): void
     {
         $this->clientRepository = $clientRepository;
     }
 
-    /**
-     * siteRepository
-     *
-     * @var \LEPAFF\SiteMonitor\Domain\Repository\SiteRepository
-     */
-    protected $siteRepository = null;
-
-    /**
-     * @param \LEPAFF\SiteMonitor\Domain\Repository\SiteRepository $siteRepository
-     */
-    public function injectSiteRepository(\LEPAFF\SiteMonitor\Domain\Repository\SiteRepository $siteRepository)
+    public function injectSiteRepository(SiteRepository $siteRepository): void
     {
         $this->siteRepository = $siteRepository;
     }
 
-    /**
-     * extensionRepository
-     *
-     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository
-     */
-    protected $extensionRepository = null;
-
-    /**
-     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository
-     */
-    public function injectExtensionRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensionRepository $extensionRepository)
+    public function injectExtensionRepository(ExtensionRepository $extensionRepository): void
     {
         $this->extensionRepository = $extensionRepository;
     }
 
-    /**
-     * extensiondocRepository
-     *
-     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository
-     */
-    protected $extensiondocRepository = null;
-
-    /**
-     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository
-     */
-    public function injectExtensiondocRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensiondocRepository $extensiondocRepository)
+    public function injectExtensiondocRepository(ExtensiondocRepository $extensiondocRepository): void
     {
         $this->extensiondocRepository = $extensiondocRepository;
     }
 
-    /**
-     * extensionversionRepository
-     *
-     * @var \LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository
-     */
-    protected $extensionversionRepository = null;
-
-    /**
-     * @param \LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository
-     */
-    public function injectExtensionversionRepository(\LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository $extensionversionRepository)
+    public function injectExtensionversionRepository(ExtensionversionRepository $extensionversionRepository): void
     {
         $this->extensionversionRepository = $extensionversionRepository;
     }
 
-    public function getAllClients() {
-        $clients = $this->clientRepository->findNextToGenerate();
-
-        return $clients;
+    public function getAllClients()
+    {
+        return $this->clientRepository->findNextToGenerate();
     }
 
     /**
-     * execute generate
+     * execute generate.
      *
      * @param int $uid
-     * @return string|object|null|void
+     *
+     * @return null|object|string|void
      */
-    public function executeGenerate($uid) {
-        $timeAtStart = microtime(true);
+    public function executeGenerate($uid)
+    {
+        microtime(true);
         $client = $this->clientRepository->findByUid($uid);
-        if ($client->getUrl() === '') {
+
+        if ('' === $client->getUrl()) {
             // no url set - throw error
             // @todo
             // $this->addFlashMessage(
@@ -122,47 +112,45 @@ class ClientService implements SingletonInterface
             // $this->redirect('list');
         }
 
-        if ($client->getHtaccess() === 1) {
+        if (1 === $client->getHtaccess()) {
             // @todo
             DebugUtility::debug($client);
             $url = $client->getUrl();
 
-            //Your username.
+            // Your username.
             $username = $client->getHtUser();
-            //Your password.
+            // Your password.
             $password = $client->getHtPass();
-            //Initiate cURL.
+            // Initiate cURL.
             $ch = curl_init($url);
-            //Specify the username and password using the CURLOPT_USERPWD option.
+            // Specify the username and password using the CURLOPT_USERPWD option.
             // curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-            //Tell cURL to return the output as a string instead
-            //of dumping it to the browser.
-            $headers = array(
+            // Tell cURL to return the output as a string instead
+            // of dumping it to the browser.
+            $headers = [
                 'Content-Type: application/json',
-                'Authorization: Basic '. base64_encode("$username:$password")
-            );
+                'Authorization: Basic '.base64_encode("{$username}:{$password}"),
+            ];
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            //Execute the cURL request.
+            // Execute the cURL request.
             $json = curl_exec($ch);
-            //Check for errors.
-            if(curl_errno($ch)){
-                //If an error occured, throw an Exception.
+            // Check for errors.
+            if (0 !== curl_errno($ch)) {
+                // If an error occured, throw an Exception.
                 throw new Exception(curl_error($ch));
             }
 
-            //Print out the response.
+            // Print out the response.
             // echo $json;
             DebugUtility::debug($json, 'json');
 
-            die();
-
-        } else {
-            $url = $client->getUrl() . '/?type=' . $client->getTypeParam();
-            $json = GeneralUtility::getUrl($url);
+            exit;
         }
+        $url = $client->getUrl().'/?type='.$client->getTypeParam();
+        $json = GeneralUtility::getUrl($url);
 
-        if (!$json) {
+        if (! $json) {
             // no json - throw error
             // redirect to show action with jsonError parameter
             // @todo
@@ -173,16 +161,16 @@ class ClientService implements SingletonInterface
                 [
                     'client' => $client,
                     'errors' => [
-                        'json' => 1
-                    ]
+                        'json' => 1,
+                    ],
                 ]
             );
-            // @todo
+        // @todo
         } else {
             $response = json_decode($json, true);
         }
 
-        if (count($client->getSite()) === 0) {
+        if (0 === count($client->getSite())) {
             $newSite = GeneralUtility::makeInstance(Site::class);
         } else {
             $newSite = $client->getSite()[0];
@@ -192,9 +180,10 @@ class ClientService implements SingletonInterface
             }
         }
         $typo3Context = '';
+
         if (isset($response['typo3Context'])) {
-            foreach($response['typo3Context'] as $key => $context) {
-                if ($context === true) {
+            foreach ($response['typo3Context'] as $key => $context) {
+                if (true === $context) {
                     $typo3Context = $key;
                 }
             }
@@ -202,19 +191,23 @@ class ClientService implements SingletonInterface
         $packageStorage = GeneralUtility::makeInstance(ObjectStorage::class);
         $composerPackages = $this->getComposerPackageArray($response['composerPackages']);
         $lockPackages = $this->getComposerLockPackageArray($response['lockPackages']);
-        if (count($client->getSite()) === 0) {
-            foreach($response['composerPackages'] as $cKey => $package) {
+
+        if (0 === count($client->getSite())) {
+            foreach ($response['composerPackages'] as $package) {
                 $newExtension = GeneralUtility::makeInstance(Extension::class);
                 $newExtension->setTitle($package['package']);
-                if(isset($composerPackages[$package['package']])) {
+
+                if (isset($composerPackages[$package['package']])) {
                     $newExtension->setVersion($composerPackages[$newExtension->getTitle()]['version']);
                 }
+
                 if (isset($lockPackages[$package['package']])) {
                     $newExtension->setVersionInstalled($lockPackages[$package['package']]['version']);
                 }
                 // find or create extensionDoc for extension
                 $extDoc = $this->findOrCreateExtensionDoc($package['package']);
-                if ($extDoc !== null) {
+
+                if (null !== $extDoc) {
                     $newExtension->setExtensionDoc($extDoc);
                 }
                 $packageStorage->attach($newExtension);
@@ -222,15 +215,19 @@ class ClientService implements SingletonInterface
             $newSite->setInstalledExtension($packageStorage);
         } else {
             $installedExtensions = $newSite->getInstalledExtension();
-            foreach($installedExtensions as $ext) {
+
+            foreach ($installedExtensions as $ext) {
                 // find or create extensionDoc for extension
                 $extDoc = $this->findOrCreateExtensionDoc($ext->getTitle());
-                if ($extDoc !== null) {
+
+                if (null !== $extDoc) {
                     $ext->setExtensionDoc($extDoc);
                 }
-                if(isset($composerPackages[$ext->getTitle()])) {
+
+                if (isset($composerPackages[$ext->getTitle()])) {
                     $ext->setTitle($composerPackages[$ext->getTitle()]['package']);
                     $ext->setVersion($composerPackages[$ext->getTitle()]['version']);
+
                     if (isset($lockPackages[$ext->getTitle()])) {
                         $ext->setVersionInstalled($lockPackages[$ext->getTitle()]['version']);
                     }
@@ -253,11 +250,12 @@ class ClientService implements SingletonInterface
         $newSite->setPhpVersion($response['phpVersion']);
         $newSite->setTypo3Version($response['typo3Version']);
         $newSite->setTypo3Context($typo3Context);
-        if($response['patchAvailable'] !== false) {
+
+        if (false !== $response['patchAvailable']) {
             $newSite->setPatchAvailable($response['patchAvailable']);
         }
 
-        if (count($client->getSite()) === 0) {
+        if (0 === count($client->getSite())) {
             $this->siteRepository->add($newSite);
             $client->addSite($newSite);
         } else {
@@ -281,7 +279,8 @@ class ClientService implements SingletonInterface
         return true;
     }
 
-    private function buildSlug($record, $tableName, $slugFieldName = 'slug') {
+    private function buildSlug($record, $tableName, $slugFieldName = 'slug')
+    {
         //      Get field configuration
         $fieldConfig = $GLOBALS['TCA'][$tableName]['columns'][$slugFieldName]['config'];
         $evalInfo = GeneralUtility::trimExplode(',', $fieldConfig['eval'], true);
@@ -301,79 +300,87 @@ class ClientService implements SingletonInterface
             ->fromArray($record, $record['pid'], $record['uid']);
 
         //      Build slug depending on eval configuration
-        if (in_array('uniqueInSite', $evalInfo)) {
+        if (in_array('uniqueInSite', $evalInfo, true)) {
             $slug = $slugHelper->buildSlugForUniqueInSite($slug, $state);
-        } else if (in_array('uniqueInPid', $evalInfo)) {
+        } elseif (in_array('uniqueInPid', $evalInfo, true)) {
             $slug = $slugHelper->buildSlugForUniqueInPid($slug, $state);
-        } else if (in_array('unique', $evalInfo)) {
+        } elseif (in_array('unique', $evalInfo, true)) {
             $slug = $slugHelper->buildSlugForUniqueInTable($slug, $state);
         }
 
         return $slug;
     }
 
-    private function getComposerPackageArray($packages) {
+    private function getComposerPackageArray($packages)
+    {
         $out = [];
-        foreach($packages as $package) {
+
+        foreach ($packages as $package) {
             $out[$package['package']] = $package;
         }
 
         return $out;
     }
 
-    private function getComposerLockPackageArray($packages) {
+    private function getComposerLockPackageArray($packages)
+    {
         $out = [];
-        foreach($packages as $package) {
+
+        foreach ($packages as $package) {
             $out[$package['version']['name']] = $package['version'];
         }
 
         return $out;
     }
 
-    private function findOrCreateExtensionDoc($ext) {
+    private function findOrCreateExtensionDoc($ext)
+    {
         $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
-        $json = GeneralUtility::getUrl('https://packagist.org/packages/'.$ext.'.json');
+        $json = GeneralUtility::makeInstance(RequestFactory::class)->request('https://packagist.org/packages/'.$ext.'.json')->getBody()->getContents();
         $extDoc = $this->extensiondocRepository->findByTitle($ext);
 
         if (count($extDoc) > 0) {
-            if($json !== false) {
+            if (false !== $json) {
                 $json = json_decode($json, true);
-                // @todo
+                /** @todo */
                 $versionStorage = $this->getVersionsForExtension($json, $persistenceManager);
                 $extDoc[0]->setVersions($versionStorage);
             }
+
             return $extDoc[0];
-        } else {
-            // e.g. https://packagist.org/packages/friendsoftypo3/extension-builder.json
-            if($json !== false) {
-                $json = json_decode($json, true);
-                if ($json === null) {
-                    return null;
-                }
-                $newExtensionDoc = GeneralUtility::makeInstance(Extensiondoc::class);
-                $newExtensionDoc->setTitle($json['package']['name']);
-                $newExtensionDoc->setDescription($json['package']['description']);
-                $newExtensionDoc->setRepository($json['package']['repository']);
+        }
 
-                // @todo
-                $versionStorage = $this->getVersionsForExtension($json, $persistenceManager);
-                $newExtensionDoc->setVersions($versionStorage);
+        if (false !== $json) {
+            $json = json_decode($json, true);
 
-                if(substr($json['package']['name'], 0, 9) === 'typo3/cms') {
-                    $newExtensionDoc->setIsSysExt(1);
-                } else {
-                    $newExtensionDoc->setIsSysExt(0);
-                }
-
-                return $newExtensionDoc;
+            if (null === $json) {
+                return;
             }
+            $newExtensionDoc = GeneralUtility::makeInstance(Extensiondoc::class);
+            $newExtensionDoc->setTitle($json['package']['name']);
+            $newExtensionDoc->setDescription($json['package']['description']);
+            $newExtensionDoc->setRepository($json['package']['repository']);
+            /** @todo */
+            $versionStorage = $this->getVersionsForExtension($json, $persistenceManager);
+            $newExtensionDoc->setVersions($versionStorage);
+
+            if ('typo3/cms' === mb_substr($json['package']['name'], 0, 9)) {
+                $newExtensionDoc->setIsSysExt(1);
+            } else {
+                $newExtensionDoc->setIsSysExt(0);
+            }
+
+            return $newExtensionDoc;
         }
     }
 
-    private function getVersionsForExtension($json, $persistenceManager) {
+    private function getVersionsForExtension($json, $persistenceManager)
+    {
         $versionStorage = GeneralUtility::makeInstance(ObjectStorage::class);
-        foreach($json['package']['versions'] as $version) {
+
+        foreach ($json['package']['versions'] as $version) {
             $extVersion = $this->extensionversionRepository->findByVersion($version['version']);
+
             if (count($extVersion) > 0) {
                 $versionStorage->attach($extVersion[0]);
             } else {
