@@ -14,7 +14,7 @@
            <div class="row">
                <f:for each="{clients}" as="client" iteration="iterator">
                    <f:variable name="bgTheme" value="ap-teaser--theme-{prov:randomColor(cycle: client.uid)}"/>
-                   <div class="col md:w-4/12 mb-3">
+                   <div class="col w-full lg:w-6/12 xl:w-4/12 mb-3">
                        <f:render partial="Client/Teaser" arguments="{client:client, bgTheme: bgTheme}"/>
                    </div>
                </f:for>
