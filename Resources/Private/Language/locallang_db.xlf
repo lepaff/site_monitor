@@ -84,45 +84,6 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client" resname="tx_sitemonitor_domain_model_client">
 				<source>Client</source>
 			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.title" resname="tx_sitemonitor_domain_model_client.title">
-				<source>Title</source>
-			</trans-unit>
-            <trans-unit id="tx_sitemonitor_domain_model_client.slug" resname="tx_sitemonitor_domain_model_client.slug">
-				<source>Slug</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.username" resname="tx_sitemonitor_domain_model_client.username">
-				<source>Username</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.password" resname="tx_sitemonitor_domain_model_client.password">
-				<source>Password</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.secret" resname="tx_sitemonitor_domain_model_client.secret">
-				<source>Secret</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.type_param" resname="tx_sitemonitor_domain_model_client.type_param">
-				<source>Type parameter (typeNum)</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.url" resname="tx_sitemonitor_domain_model_client.url">
-				<source>Url for JSON</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.htaccess" resname="tx_sitemonitor_domain_model_client.htaccess">
-				<source>Is htaccess protected?</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.ht_user" resname="tx_sitemonitor_domain_model_client.ht_user">
-				<source>Htaccess user</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.ht_pass" resname="tx_sitemonitor_domain_model_client.ht_pass">
-				<source>Htaccess password</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.url_fe" resname="tx_sitemonitor_domain_model_client.url_fe">
-				<source>Url Frontend</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.url_be" resname="tx_sitemonitor_domain_model_client.url_be">
-				<source>Url Backend</source>
-			</trans-unit>
-			<trans-unit id="tx_sitemonitor_domain_model_client.url_gitlab" resname="tx_sitemonitor_domain_model_client.url_gitlab">
-				<source>Url Gitlab</source>
-			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.site" resname="tx_sitemonitor_domain_model_client.site">
 				<source>Site</source>
 			</trans-unit>

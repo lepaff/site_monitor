@@ -48,6 +48,9 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client.type_param" resname="tx_sitemonitor_domain_model_client.type_param">
 				<source>Type parameter (typeNum)</source>
 			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.type_param.placeholder" resname="tx_sitemonitor_domain_model_client.type_param.placeholder">
+				<source>typeNum</source>
+			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.url" resname="tx_sitemonitor_domain_model_client.url">
 				<source>Url for JSON</source>
 			</trans-unit>
@@ -60,14 +63,17 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client.ht_pass" resname="tx_sitemonitor_domain_model_client.ht_pass">
 				<source>Htaccess password</source>
 			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.create" resname="tx_sitemonitor_domain_model_client.create">
+				<source>Create client</source>
+			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.url_fe" resname="tx_sitemonitor_domain_model_client.url_fe">
-				<source>Url Frontend</source>
+				<source>Frontend Url</source>
 			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.url_be" resname="tx_sitemonitor_domain_model_client.url_be">
-				<source>Url Backend</source>
+				<source>Backend Url</source>
 			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.url_gitlab" resname="tx_sitemonitor_domain_model_client.url_gitlab">
-				<source>Url Gitlab</source>
+				<source>Gitlab Url</source>
 			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.site" resname="tx_sitemonitor_domain_model_client.site">
 				<source>Site</source>

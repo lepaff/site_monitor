@@ -3,14 +3,16 @@
 
 <f:section name="content">
     <h1>New Client</h1>
+    <div class="ap-section ap-section--theme-blue rounded p-3">
+        <f:flashMessages />
 
-    <f:flashMessages />
+        <f:render partial="FormErrors" />
 
-    <f:render partial="FormErrors" />
-
-    <f:form action="create" name="newClient" object="{newClient}">
-    <f:render partial="Client/FormFields" />
-    <f:form.submit value="Create new" />
-    </f:form>
+        <div class="w-full md:w-8/12 m-auto">
+            <f:form action="create" name="newClient" object="{newClient}" class="my-4">
+                <f:render partial="Client/FormFields" />
+            </f:form>
+        </div>
+    </div>
 </f:section>
 </html>

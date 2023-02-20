@@ -109,7 +109,7 @@ return [
         ],
         'title' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.title',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -119,7 +119,7 @@ return [
         ],
         'username' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.username',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.username',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -129,7 +129,7 @@ return [
         ],
         'password' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.password',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.password',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -139,7 +139,7 @@ return [
         ],
         'secret' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.secret',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.secret',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -149,7 +149,7 @@ return [
         ],
         'type_param' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.type_param',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.type_param',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -159,7 +159,7 @@ return [
         ],
         'url' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.url',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.url',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -170,7 +170,7 @@ return [
         'htaccess' => [
             'exclude' => true,
             'onChange' => 'reload',
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.htaccess',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.htaccess',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
@@ -188,7 +188,7 @@ return [
         'ht_user' => [
             'exclude' => true,
             'displayCond' => 'FIELD:htaccess:REQ:true',
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.ht_user',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.ht_user',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -199,7 +199,7 @@ return [
         'ht_pass' => [
             'exclude' => true,
             'displayCond' => 'FIELD:htaccess:REQ:true',
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.ht_pass',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.ht_pass',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -209,7 +209,7 @@ return [
         ],
         'url_fe' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.url_fe',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.url_fe',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -219,7 +219,7 @@ return [
         ],
         'url_be' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.url_be',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.url_be',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -229,7 +229,7 @@ return [
         ],
         'url_gitlab' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.url_gitlab',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.url_gitlab',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -239,7 +239,7 @@ return [
         ],
         'site' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.site',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.site',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
@@ -265,7 +265,7 @@ return [
         ],
         'slug' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.slug',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.slug',
             'config' => [
                 'type' => 'slug',
                 'size' => 50,
@@ -284,7 +284,7 @@ return [
         ],
         'owner' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.owner',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.owner',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
@@ -312,7 +312,7 @@ return [
         ],
         'developer' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_sitemonitor_domain_model_client.developer',
+            'label' => 'LLL:EXT:site_monitor/Resources/Private/Language/locallang.xlf:tx_sitemonitor_domain_model_client.developer',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',

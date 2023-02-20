@@ -1,97 +1,111 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<div class="form-row">
-    <label for="title">
-        <f:translate key="tx_sitemonitor_domain_model_client.title" />
-    </label><br />
-        <f:form.textfield property="title" id="title" /><br />
+<div class="form-group row">
+    <div class="col md:w-6/12">
+        <label for="title">
+            <f:translate key="tx_sitemonitor_domain_model_client.title"/>
+        </label>
+        <f:form.textfield property="title" id="title" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.title')}"/>
+    </div>
 </div>
-<div class="form-row">
-    <label for="username">
-        <f:translate key="tx_sitemonitor_domain_model_client.username" />
-    </label><br />
-        <f:form.textfield property="username" id="username" /><br />
+<div class="form-group row">
+    <div class="col md:w-6/12">
+        <label for="username">
+            <f:translate key="tx_sitemonitor_domain_model_client.username"/>
+        </label>
+        <f:form.textfield property="username" id="username" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.username')}"/>
+    </div>
+    <div class="col md:w-6/12">
+        <label for="password">
+            <f:translate key="tx_sitemonitor_domain_model_client.password"/>
+        </label>
+        <f:form.textfield property="password" id="password" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.password')}"/>
+    </div>
 </div>
-<div class="form-row">
-    <label for="password">
-        <f:translate key="tx_sitemonitor_domain_model_client.password" />
-    </label><br />
-        <f:form.textfield property="password" id="password" /><br />
-</div>
-<div class="form-row">
+
+<div class="form-group">
     <label for="secret">
-        <f:translate key="tx_sitemonitor_domain_model_client.secret" />
-    </label><br />
-        <f:form.textfield property="secret" id="secret" /><br />
+        <f:translate key="tx_sitemonitor_domain_model_client.secret"/>
+    </label>
+    <f:form.textfield property="secret" id="secret" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.secret')}"/>
 </div>
-<div class="form-row">
-    <label for="typeParam">
-        <f:translate key="tx_sitemonitor_domain_model_client.type_param" />
-    </label><br />
-        <f:form.textfield property="typeParam" id="typeParam" /><br />
+<div class="form-group row">
+    <div class="col md:w-8/12">
+        <label for="url">
+            <f:translate key="tx_sitemonitor_domain_model_client.url"/>
+        </label>
+        <f:form.textfield property="url" id="url" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url')}"/>
+    </div>
+    <div class="col md:w-4/12">
+        <label for="typeParam">
+            <f:translate key="tx_sitemonitor_domain_model_client.type_param"/>
+        </label>
+        <f:form.textfield property="typeParam" id="typeParam" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.type_param.placeholder')}"/>
+    </div>
 </div>
-<div class="form-row">
-    <label for="url">
-        <f:translate key="tx_sitemonitor_domain_model_client.url" />
-    </label><br />
-        <f:form.textfield property="url" id="url" /><br />
+<hr/>
+<p class="form-subheadline">Htaccess</p>
+
+<div class="form-group">
+    <label for="htaccess" class="ap-checkbox__label">
+        <f:form.checkbox property="htaccess" value="1" id="htaccess"/>
+
+        <span><f:translate key="tx_sitemonitor_domain_model_client.htaccess"/></span>
+    </label>
 </div>
-<div class="form-row">
-    <label for="htaccess">
-        <f:translate key="tx_sitemonitor_domain_model_client.htaccess" />
-    </label><br />
-        <f:form.checkbox property="htaccess" value="1" id="htaccess" /><br />
+<div class="form-group row">
+    <div class="col md:w-6/12">
+        <label for="htUser">
+            <f:translate key="tx_sitemonitor_domain_model_client.ht_user"/>
+        </label>
+        <f:form.textfield property="htUser" id="htUser" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_user')}"/>
+    </div>
+    <div class="col md:w-6/12">
+        <label for="htPass">
+            <f:translate key="tx_sitemonitor_domain_model_client.ht_pass"/>
+        </label>
+        <f:form.textfield property="htPass" id="htPass" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_pass')}"/>
+    </div>
 </div>
-<div class="form-row">
-    <label for="htUser">
-        <f:translate key="tx_sitemonitor_domain_model_client.htUser" />
-    </label><br />
-        <f:form.textfield property="htUser" id="htUser" /><br />
-</div>
-<div class="form-row">
-    <label for="htPass">
-        <f:translate key="tx_sitemonitor_domain_model_client.ht_pass" />
-    </label><br />
-        <f:form.textfield property="htPass" id="htPass" /><br />
-</div>
-<div class="form-row">
+<hr/>
+<p class="form-subheadline">Projekt Urls</p>
+<div class="form-group">
     <label for="urlFe">
-        <f:translate key="tx_sitemonitor_domain_model_client.url_fe" />
-    </label><br />
-        <f:form.textfield property="urlFe" id="urlFe" /><br />
+        <f:translate key="tx_sitemonitor_domain_model_client.url_fe"/>
+    </label>
+    <f:form.textfield property="urlFe" id="urlFe" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_fe')}"/>
 </div>
-<div class="form-row">
+<div class="form-group">
     <label for="urlBe">
-        <f:translate key="tx_sitemonitor_domain_model_client.url_be" />
-    </label><br />
-        <f:form.textfield property="urlBe" id="urlBe" /><br />
+        <f:translate key="tx_sitemonitor_domain_model_client.url_be"/>
+    </label>
+    <f:form.textfield property="urlBe" id="urlBe" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_be')}"/>
 </div>
-<div class="form-row">
+<div class="form-group">
     <label for="urlGitlab">
-        <f:translate key="tx_sitemonitor_domain_model_client.url_gitlab" />
-    </label><br />
-        <f:form.textfield property="urlGitlab" id="urlGitlab" /><br />
+        <f:translate key="tx_sitemonitor_domain_model_client.url_gitlab"/>
+    </label>
+    <f:form.textfield property="urlGitlab" id="urlGitlab" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_gitlab')}"/>
 </div>
-<div class="form-row">
-    <label for="slug">
-        <f:translate key="tx_sitemonitor_domain_model_client.slug" />
-    </label><br />
-        <f:form.textfield property="slug" id="slug" /><br />
+<f:form.hidden value=" " property="slug" id="slug"/>
+<div class="text-center">
+    <f:form.submit value="{f:translate(key: 'tx_sitemonitor_domain_model_client.create')}" class="ap-btn" />
 </div>
+
 </html>
 
 
 <f:comment>
 
-### DomainObjects ###
-<label for="owner">
-    <f:translate key="tx_sitemonitor_domain_model_client.owner" />
-</label><br />
-<f:form.textfield property="owner" id="owner" /><br />
+    ### DomainObjects ###
+    <label for="owner">
+        <f:translate key="tx_sitemonitor_domain_model_client.owner"/>
+    </label>
+    <f:form.textfield property="owner" id="owner"/>
 
-<label for="developer">
-    <f:translate key="tx_sitemonitor_domain_model_client.developer" />
-</label><br />
-<f:form.textfield property="developer" id="developer" /><br />
-### DomainObjects ###
+    <label for="developer">
+        <f:translate key="tx_sitemonitor_domain_model_client.developer"/>
+    </label>
+    <f:form.textfield property="developer" id="developer"/>
+    ### DomainObjects ###
 
 </f:comment>
