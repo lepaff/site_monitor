@@ -246,20 +246,6 @@ class MonitorController extends ActionController
     }
 
     /**
-     * action edit.
-     *
-     * @IgnoreValidation("client")
-     *
-     * @return null|object|string|void
-     */
-    public function editAction(Client $client): ResponseInterface
-    {
-        $this->view->assign('client', $client);
-
-        return $this->htmlResponse();
-    }
-
-    /**
      * action update.
      *
      * @return null|object|string|void

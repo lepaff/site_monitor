@@ -11,4 +11,7 @@ plugin.tx_sitemonitor_dashboard {
         # cat=plugin.tx_sitemonitor_dashboard//a; type=string; label=Default storage PID
         storagePid = 1
     }
+    settings {
+        clientPid = 9
+    }
 }

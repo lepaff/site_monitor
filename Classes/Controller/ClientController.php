@@ -33,6 +33,18 @@ class ClientController extends ActionController
     }
 
     /**
+     * action edit.
+     *
+     * @return null|object|string|void
+     */
+    public function editAction(Client $client): ResponseInterface
+    {
+        $this->view->assign('client', $client);
+
+        return $this->htmlResponse();
+    }
+
+    /**
      * action create.
      *
      * @return null|object|string|void

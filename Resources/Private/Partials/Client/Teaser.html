@@ -20,7 +20,7 @@
 
 <f:section name="links">
     <div class="flex items-start justify-center">
-        <f:link.action action="edit" arguments="{client : client}" title="Edit client" class="m-0.5">
+        <f:link.action action="edit" pluginName="ClientCreate" controller="Client" arguments="{client : client}" pageUid="{settings.clientPid}" title="Edit client" class="m-0.5">
             <i class="ap-btn--icon fa fa-pencil"></i>
         </f:link.action>
         <f:link.action action="deleteConfirmation" arguments="{client : client}" title="Delete client" class="m-0.5">
