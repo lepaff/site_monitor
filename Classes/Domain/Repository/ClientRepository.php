@@ -115,7 +115,7 @@ class ClientRepository extends Repository
         }
 
         if (array_key_exists('clientgroup', $overwriteDemand) && '' !== $overwriteDemand['clientgroup']) {
-            $constraints[] = $query->equals('site.clientgroup.uid', $overwriteDemand['clientgroup']);
+            $constraints[] = $query->equals('clientgroup.uid', $overwriteDemand['clientgroup']);
         }
 
         if (array_key_exists('typo3Versions', $overwriteDemand) && '' !== $overwriteDemand['typo3Versions']) {

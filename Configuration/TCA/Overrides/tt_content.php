@@ -11,7 +11,7 @@ defined('TYPO3') || exit;
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'SiteMonitor',
     'ClientCreate',
-    'Create new Client'
+    'Client'
 );
 
 $materialPluginSignature = 'sitemonitor_dashboardlist';

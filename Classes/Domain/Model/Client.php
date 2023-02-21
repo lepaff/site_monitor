@@ -451,7 +451,7 @@ class Client extends AbstractEntity
     /**
      * Sets the clientgroup.
      */
-    public function setClientgroup()
+    public function setClientgroup(ObjectStorage $clientgroup):void
     {
         $this->clientgroup = $clientgroup;
     }
