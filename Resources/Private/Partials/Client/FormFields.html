@@ -4,7 +4,8 @@
         <label for="title">
             <f:translate key="tx_sitemonitor_domain_model_client.title"/>
         </label>
-        <f:form.textfield property="title" id="title" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.title')}"/>
+        <f:form.textfield property="title" id="title" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.title')}"/>
     </div>
 </div>
 <div class="form-group row">
@@ -12,13 +13,24 @@
         <label for="username">
             <f:translate key="tx_sitemonitor_domain_model_client.username"/>
         </label>
-        <f:form.textfield property="username" id="username" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.username')}"/>
+        <f:form.textfield property="username" id="username" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.username')}"/>
     </div>
     <div class="col md:w-6/12">
         <label for="password">
             <f:translate key="tx_sitemonitor_domain_model_client.password"/>
         </label>
-        <f:form.textfield property="password" id="password" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.password')}"/>
+        <f:form.textfield property="password" id="password" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.password')}"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="clientgroup">
+        <f:translate key="tx_sitemonitor_domain_model_client.clientgroup"/>
+    </label>
+    <div class="ap-select rm-first-value relative">
+        <f:form.select property="clientgroup" id="clientgroup" options="{clientgroups}" errorClass="has-error"
+                       optionValueField="uid" optionLabelField="title" prependOptionLabel="{f:translate(key: 'general.pleaseChoose')}"/>
     </div>
 </div>
 
@@ -26,20 +38,23 @@
     <label for="secret">
         <f:translate key="tx_sitemonitor_domain_model_client.secret"/>
     </label>
-    <f:form.textfield property="secret" id="secret" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.secret')}"/>
+    <f:form.textfield property="secret" id="secret" errorClass="has-error"
+                      placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.secret')}"/>
 </div>
 <div class="form-group row">
     <div class="col md:w-8/12">
         <label for="url">
             <f:translate key="tx_sitemonitor_domain_model_client.url"/>
         </label>
-        <f:form.textfield property="url" id="url" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url')}"/>
+        <f:form.textfield property="url" id="url" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url')}"/>
     </div>
     <div class="col md:w-4/12">
         <label for="typeParam">
             <f:translate key="tx_sitemonitor_domain_model_client.type_param"/>
         </label>
-        <f:form.textfield property="typeParam" id="typeParam" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.type_param.placeholder')}"/>
+        <f:form.textfield property="typeParam" id="typeParam" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.type_param.placeholder')}"/>
     </div>
 </div>
 <hr/>
@@ -47,7 +62,7 @@
 
 <div class="form-group">
     <label for="htaccess" class="ap-checkbox__label">
-        <f:form.checkbox property="htaccess" value="1" id="htaccess"/>
+        <f:form.checkbox property="htaccess" value="1" errorClass="has-error" id="htaccess"/>
 
         <span><f:translate key="tx_sitemonitor_domain_model_client.htaccess"/></span>
     </label>
@@ -57,13 +72,15 @@
         <label for="htUser">
             <f:translate key="tx_sitemonitor_domain_model_client.ht_user"/>
         </label>
-        <f:form.textfield property="htUser" id="htUser" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_user')}"/>
+        <f:form.textfield property="htUser" id="htUser" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_user')}"/>
     </div>
     <div class="col md:w-6/12">
         <label for="htPass">
             <f:translate key="tx_sitemonitor_domain_model_client.ht_pass"/>
         </label>
-        <f:form.textfield property="htPass" id="htPass" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_pass')}"/>
+        <f:form.textfield property="htPass" id="htPass" errorClass="has-error"
+                          placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.ht_pass')}"/>
     </div>
 </div>
 <hr/>
@@ -72,19 +89,22 @@
     <label for="urlFe">
         <f:translate key="tx_sitemonitor_domain_model_client.url_fe"/>
     </label>
-    <f:form.textfield property="urlFe" id="urlFe" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_fe')}"/>
+    <f:form.textfield property="urlFe" id="urlFe" errorClass="has-error"
+                      placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_fe')}"/>
 </div>
 <div class="form-group">
     <label for="urlBe">
         <f:translate key="tx_sitemonitor_domain_model_client.url_be"/>
     </label>
-    <f:form.textfield property="urlBe" id="urlBe" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_be')}"/>
+    <f:form.textfield property="urlBe" id="urlBe" errorClass="has-error"
+                      placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_be')}"/>
 </div>
 <div class="form-group">
     <label for="urlGitlab">
         <f:translate key="tx_sitemonitor_domain_model_client.url_gitlab"/>
     </label>
-    <f:form.textfield property="urlGitlab" id="urlGitlab" placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_gitlab')}"/>
+    <f:form.textfield property="urlGitlab" id="urlGitlab" errorClass="has-error"
+                      placeholder="{f:translate(key: 'tx_sitemonitor_domain_model_client.url_gitlab')}"/>
 </div>
 <f:form.hidden property="slug" id="slug"/>
 

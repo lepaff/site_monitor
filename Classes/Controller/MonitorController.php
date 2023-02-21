@@ -173,6 +173,7 @@ class MonitorController extends ActionController
             'typo3Versions' => $typo3Versions,
             'pagination' => $pagination,
             'clients' => $queryResult['results'],
+            'message' => array_key_exists('tx_sitemonitor_clientcreate', $_GET) ? $_GET['tx_sitemonitor_clientcreate']['message']: null
         ]);
 
         return $this->htmlResponse();

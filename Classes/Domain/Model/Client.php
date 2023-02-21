@@ -6,6 +6,7 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -137,12 +138,8 @@ class Client extends AbstractEntity
 
     /**
      * clientgroup.
-     *
-     * @var ObjectStorage<Clientgroup>
-     *
-     * @Cascade("remove")
      */
-    protected $clientgroup;
+    protected Clientgroup $clientgroup;
 
     /**
      * __construct.
@@ -440,10 +437,8 @@ class Client extends AbstractEntity
 
     /**
      * Returns the clientgroup.
-     *
-     * @return ObjectStorage<Clientgroup> $clientgroup
      */
-    public function getClientgroup()
+    public function getClientgroup(): Clientgroup
     {
         return $this->clientgroup;
     }
@@ -451,7 +446,7 @@ class Client extends AbstractEntity
     /**
      * Sets the clientgroup.
      */
-    public function setClientgroup(ObjectStorage $clientgroup):void
+    public function setClientgroup(Clientgroup $clientgroup):void
     {
         $this->clientgroup = $clientgroup;
     }

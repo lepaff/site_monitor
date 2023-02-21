@@ -11,7 +11,7 @@
                     {f:translate(key: 'tx_sitemonitor_domain_model_client.message.{message}')}
                 </p>
             </f:if>
-            <f:render partial="FormErrors" />
+            <f:render partial="FormErrors" arguments="{object: 'client'}"/>
 
             <f:form action="update" name="client" object="{client}" arguments="{update: 'true'}" class="my-4">
                 <f:render partial="Client/FormFields" arguments="{client:client}" />

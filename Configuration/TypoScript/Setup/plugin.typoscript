@@ -26,6 +26,7 @@ plugin.tx_sitemonitor {
     }
     settings {
         clientPid = {$plugin.tx_sitemonitor_dashboard.settings.clientPid}
+        monitorPid = {$plugin.tx_sitemonitor_dashboard.settings.monitorPid}
     }
 }
 

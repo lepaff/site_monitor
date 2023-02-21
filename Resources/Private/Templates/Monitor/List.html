@@ -7,6 +7,13 @@
     <f:render partial="Filter" arguments="{_all}"/>
     <h1>Home</h1>
     <div class="ap-section ap-section--theme-blue rounded">
+        <div class="w-full md:w-8/12 m-auto">
+            <f:if condition="{message}">
+                <p class="alert alert-message" role="alert">
+                    {f:translate(key: 'tx_sitemonitor_domain_model_client.message.{message}')}
+                </p>
+            </f:if>
+        </div>
         <f:if condition="{settings.pagination.position} === '1' || {settings.pagination.position} === '3'">
             <f:render partial="Pagination" arguments="{pagination: pagination, overwriteDemand: overwriteDemand}"/>
         </f:if>

@@ -3,12 +3,19 @@
 namespace LEPAFF\SiteMonitor\Controller;
 
 use LEPAFF\SiteMonitor\Domain\Model\Client;
+use LEPAFF\SiteMonitor\Domain\Repository\ClientgroupRepository;
 use LEPAFF\SiteMonitor\Domain\Repository\ClientRepository;
+use LEPAFF\SiteMonitor\Utility\SlugUtility;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 
 class ClientController extends ActionController
 {
@@ -24,6 +31,22 @@ class ClientController extends ActionController
         $this->clientRepository = $clientRepository;
     }
 
+    /** @var ClientgroupRepository */
+    protected $clientgroupRepository;
+    
+    public function injectClientgroupRepository(ClientgroupRepository $clientgroupRepository): void
+    {
+        $this->clientgroupRepository = $clientgroupRepository;
+    }
+
+    /** @var PersistenceManager */
+    protected $persistenceManager;
+
+    public function injectPersistenceManager(PersistenceManager $persistenceManager): void
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
+
     /**
      * action new.
      *
@@ -31,6 +54,7 @@ class ClientController extends ActionController
      */
     public function newAction(): ResponseInterface
     {
+        $this->view->assign('clientgroups', $this->clientgroupRepository->findAll());
         return $this->htmlResponse();
     }
 
@@ -46,6 +70,7 @@ class ClientController extends ActionController
             $this->view->assign('message', 'update');
         }
         $this->view->assign('client', $client);
+        $this->view->assign('clientgroups', $this->clientgroupRepository->findAll());
 
         return $this->htmlResponse();
     }
@@ -54,11 +79,23 @@ class ClientController extends ActionController
      * action create.
      *
      * @return null|object|string|void
+     * @Extbase\Validate(param="newClient", validator="LEPAFF\SiteMonitor\Domain\Validator\ClientValidator")
      */
     public function createAction(Client $newClient)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', AbstractMessage::WARNING);
         $this->clientRepository->add($newClient);
-        $this->redirect('list');
+        $this->persistenceManager->persistAll();
+
+        //Generate Slug
+        $tableName = 'tx_sitemonitor_domain_model_client';
+        $slugFieldName = 'slug';
+        $slug = SlugUtility::generateUniqueSlug($newClient->getUid(), $tableName, $slugFieldName);
+        $newClient->setSlug($slug);
+
+        //Update Slug
+        $this->clientRepository->update($newClient);
+        $this->persistenceManager->persistAll();
+
+        $this->redirect('list', 'Monitor', null, ['message' => 'new'], $this->settings['monitorPid']);
     }
 }
