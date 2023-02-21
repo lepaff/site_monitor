@@ -59,15 +59,14 @@
                 <h3>{client.title}</h3>
             </f:link.action>
             <div>
-                <f:link.action action="update" pluginName="ClientCreate" controller="Client"
+                <f:link.action action="update" pluginName="Client" controller="Client"
                                arguments="{client : client}"
                                pageUid="{settings.clientPid}" title="Update client" class="ap-teaser--link m-0.5">
                     <i class="ap-btn--icon-small fa fa-pencil"></i>
                 </f:link.action>
-                <f:link.action action="deleteConfirmation" arguments="{client : client}" title="Delete client"
-                               class="ap-teaser--link m-0.5">
-                    <i class="ap-btn--icon-small fa fa-trash-can"></i>
-                </f:link.action>
+                <button class="delete-client m-0.5"
+                        data-action="{f:uri.action(action: 'delete', pluginName: 'Client', controller: 'Client',pageUid:settings.clientPid,arguments: {client:client})}">
+                    <i class="ap-btn--icon-small fa fa-trash-can"></i></button>
             </div>
         </div>
         <hr class="border-blue-400 my-1"/>

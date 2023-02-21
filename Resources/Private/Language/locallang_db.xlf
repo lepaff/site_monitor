@@ -3,7 +3,7 @@
 	<file source-language="en" datatype="plaintext" original="EXT:site_monitor/Resources/Private/Language/locallang_db.xlf" date="2022-01-31T12:21:51Z" product-name="site_monitor">
 		<header/>
 		<body>
-			<trans-unit id="tx_site_monitor_clientcreate.name" resname="tx_site_monitor_clientcreate.name">
+			<trans-unit id="tx_site_monitor_client.name" resname="tx_site_monitor_client.name">
 				<source>Create new Client</source>
 			</trans-unit>
 			<trans-unit id="tx_site_monitor_dashboardlist.name" resname="tx_site_monitor_dashboardlist.name">

@@ -13,7 +13,6 @@ use LEPAFF\SiteMonitor\Domain\Repository\ExtensionversionRepository;
 use LEPAFF\SiteMonitor\Domain\Repository\SiteRepository;
 use LEPAFF\SiteMonitor\Service\ClientService;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -171,7 +170,7 @@ class MonitorController extends ActionController
             'typo3Versions' => $typo3Versions,
             'pagination' => $pagination,
             'clients' => $queryResult['results'],
-            'message' => array_key_exists('tx_sitemonitor_clientcreate', $_GET) ? $_GET['tx_sitemonitor_clientcreate']['message'] : null,
+            'message' => array_key_exists('tx_sitemonitor_client', $_GET) ? $_GET['tx_sitemonitor_client']['message'] : null,
         ]);
 
         return $this->htmlResponse();
@@ -241,30 +240,6 @@ class MonitorController extends ActionController
         }
 
         return $this->htmlResponse();
-    }
-
-    /**
-     * action deleteConfirmation.
-     *
-     * @return null|object|string|void
-     */
-    public function deleteConfirmationAction(Client $client): ResponseInterface
-    {
-        $this->view->assign('client', $client);
-
-        return $this->htmlResponse();
-    }
-
-    /**
-     * action delete.
-     *
-     * @return null|object|string|void
-     */
-    public function deleteAction(Client $client)
-    {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', AbstractMessage::WARNING);
-        $this->clientRepository->remove($client);
-        $this->redirect('list');
     }
 
     /**

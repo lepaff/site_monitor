@@ -14,7 +14,7 @@
             <f:render partial="FormErrors" arguments="{object: 'client'}"/>
 
             <f:form action="update" name="client" object="{client}" arguments="{update: 'true'}" class="my-4">
-                <f:render partial="Client/FormFields" arguments="{client:client}" />
+                <f:render partial="Client/FormFields" arguments="{client:client, clientgroups:clientgroups}" />
                 <div class="text-center">
                     <button type="submit" class="ap-btn">
                         <i class="fa fa-arrows-rotate pr-1"></i> {f:translate(key: 'tx_sitemonitor_domain_model_client.update')}

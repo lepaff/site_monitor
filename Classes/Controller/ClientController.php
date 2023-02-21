@@ -94,4 +94,16 @@ class ClientController extends ActionController
 
         $this->redirect('list', 'Monitor', null, ['message' => 'new'], $this->settings['monitorPid']);
     }
+
+    /**
+     * action delete.
+     *
+     * @return null|object|string|void
+     */
+    public function deleteAction(Client $client)
+    {
+        $this->clientRepository->remove($client);
+        $this->persistenceManager->persistAll();
+        $this->redirect('list', 'Monitor', null, ['message' => 'delete'], $this->settings['monitorPid']);
+    }
 }

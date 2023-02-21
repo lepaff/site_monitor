@@ -346,7 +346,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_sitemonitor_domain_model_clientgroup',
-                'default' => '',
+                'default' => '0',
                 'items' => [
                     ['Bitte wählen', '0'],
                 ],

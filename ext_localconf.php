@@ -7,25 +7,25 @@ defined('TYPO3') || exit;
         'SiteMonitor',
         'Dashboardlist',
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate',
         ],
         // non-cacheable actions
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, list, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, list',
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'SiteMonitor',
-        'ClientCreate',
+        'Client',
         [
-            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update',
+            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update, delete',
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list',
         ],
         // non-cacheable actions
         [
-            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update',
+            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update, delete',
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list',
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
@@ -58,10 +58,10 @@ defined('TYPO3') || exit;
                             list_type = sitemonitor_dashboardlist
                         }
                     }
-                     clientcreate {
+                     client {
                         iconIdentifier = site_monitor-plugin-dashboardlist
-                        title = LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_site_monitor_clientcreate.name
-                        description = LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_site_monitor_clientcreate.description
+                        title = LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_site_monitor_client.name
+                        description = LLL:EXT:site_monitor/Resources/Private/Language/locallang_db.xlf:tx_site_monitor_client.description
                         tt_content_defValues {
                             CType = list
                             list_type = sitemonitor_dashboardlist

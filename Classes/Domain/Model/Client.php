@@ -136,7 +136,7 @@ class Client extends AbstractEntity
     protected $slug = '';
 
     /** clientgroup. */
-    protected Clientgroup $clientgroup;
+    protected ?Clientgroup $clientgroup = null;
 
     /**
      * __construct.
@@ -435,7 +435,7 @@ class Client extends AbstractEntity
     /**
      * Returns the clientgroup.
      */
-    public function getClientgroup(): Clientgroup
+    public function getClientgroup(): ?Clientgroup
     {
         return $this->clientgroup;
     }
@@ -443,7 +443,7 @@ class Client extends AbstractEntity
     /**
      * Sets the clientgroup.
      */
-    public function setClientgroup(Clientgroup $clientgroup): void
+    public function setClientgroup(?Clientgroup $clientgroup): void
     {
         $this->clientgroup = $clientgroup;
     }

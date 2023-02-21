@@ -132,6 +132,9 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client.message.new" resname="tx_sitemonitor_domain_model_client.message.new">
 				<source>The client was successfully created.</source>
 			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.message.delete" resname="tx_sitemonitor_domain_model_client.message.delete">
+				<source>The client was successfully deleted.</source>
+			</trans-unit>
 			<trans-unit id="validator.title.empty" resname="validator.title.empty">
 				<source>Please set a title.</source>
 			</trans-unit>

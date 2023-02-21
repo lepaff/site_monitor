@@ -32,7 +32,7 @@ plugin.tx_sitemonitor {
 
 plugin.tx_sitemonitor_dashboard < plugin.tx_sitemonitor
 plugin.tx_sitemonitor_dashboardlist < plugin.tx_sitemonitor
-plugin.tx_sitemonitor_clientcreate < plugin.tx_sitemonitor
+plugin.tx_sitemonitor_client < plugin.tx_sitemonitor
 
 
 // PAGE object for regular call (tmp - testing):
