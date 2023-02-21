@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1>{f:translate(key: 'tx_sitemonitor_domain_model_client.update')}</h1>
+    <div class="ap-section ap-section--theme-blue rounded p-3">
+
+        <div class="w-full md:w-8/12 m-auto">
+            <f:if condition="{message}">
+                <p class="alert alert-message" role="alert">
+                    {f:translate(key: 'tx_sitemonitor_domain_model_client.message.{message}')}
+                </p>
+            </f:if>
+            <f:render partial="FormErrors" />
+
+            <f:form action="update" name="client" object="{client}" arguments="{update: 'true'}" class="my-4">
+                <f:render partial="Client/FormFields" arguments="{client:client}" />
+                <div class="text-center">
+                    <button type="submit" class="ap-btn">
+                        <i class="fa fa-arrows-rotate pr-1"></i> {f:translate(key: 'tx_sitemonitor_domain_model_client.update')}
+                    </button>
+                </div>
+            </f:form>
+        </div>
+    </div>
+
+</f:section>
+</html>

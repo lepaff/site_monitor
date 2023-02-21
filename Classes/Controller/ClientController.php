@@ -7,6 +7,8 @@ use LEPAFF\SiteMonitor\Domain\Repository\ClientRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class ClientController extends ActionController
 {
@@ -37,8 +39,12 @@ class ClientController extends ActionController
      *
      * @return null|object|string|void
      */
-    public function editAction(Client $client): ResponseInterface
+    public function updateAction(Client $client): ResponseInterface
     {
+        if($this->request->hasArgument('update')){
+            $this->clientRepository->update($client);
+            $this->view->assign('message', 'update');
+        }
         $this->view->assign('client', $client);
 
         return $this->htmlResponse();

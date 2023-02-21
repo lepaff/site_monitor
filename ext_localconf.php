@@ -7,11 +7,11 @@ defined('TYPO3') || exit;
         'SiteMonitor',
         'Dashboardlist',
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, update, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'index, list, show, generate, delete, deleteConfirmation',
         ],
         // non-cacheable actions
         [
-            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, list, new, create, update, delete, deleteConfirmation',
+            \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'show, generate, list, delete, deleteConfirmation',
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
     );
@@ -20,12 +20,12 @@ defined('TYPO3') || exit;
         'SiteMonitor',
         'ClientCreate',
         [
-            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, edit',
+            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update',
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list',
         ],
         // non-cacheable actions
         [
-            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, edit',
+            \LEPAFF\SiteMonitor\Controller\ClientController::class => 'new, create, update',
             \LEPAFF\SiteMonitor\Controller\MonitorController::class => 'list',
         ],
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN

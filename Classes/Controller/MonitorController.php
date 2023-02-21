@@ -244,18 +244,6 @@ class MonitorController extends ActionController
     }
 
     /**
-     * action update.
-     *
-     * @return null|object|string|void
-     */
-    public function updateAction(Client $client)
-    {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', AbstractMessage::WARNING);
-        $this->clientRepository->update($client);
-        $this->redirect('list');
-    }
-
-    /**
      * action deleteConfirmation.
      *
      * @return null|object|string|void

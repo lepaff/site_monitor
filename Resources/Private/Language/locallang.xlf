@@ -66,6 +66,9 @@
 			<trans-unit id="tx_sitemonitor_domain_model_client.create" resname="tx_sitemonitor_domain_model_client.create">
 				<source>Create client</source>
 			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.update" resname="tx_sitemonitor_domain_model_client.update">
+				<source>Update client</source>
+			</trans-unit>
 			<trans-unit id="tx_sitemonitor_domain_model_client.url_fe" resname="tx_sitemonitor_domain_model_client.url_fe">
 				<source>Frontend Url</source>
 			</trans-unit>
@@ -119,6 +122,9 @@
 			</trans-unit>
 			<trans-unit id="general.pleaseChoose" resname="general.pleaseChoose">
 				<source>Please choose</source>
+			</trans-unit>
+			<trans-unit id="tx_sitemonitor_domain_model_client.message.update" resname="tx_sitemonitor_domain_model_client.message.update">
+				<source>The client was successfully updated</source>
 			</trans-unit>
 		</body>
 	</file>
