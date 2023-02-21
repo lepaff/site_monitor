@@ -6,7 +6,6 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -136,9 +135,7 @@ class Client extends AbstractEntity
      */
     protected $slug = '';
 
-    /**
-     * clientgroup.
-     */
+    /** clientgroup. */
     protected Clientgroup $clientgroup;
 
     /**
@@ -446,7 +443,7 @@ class Client extends AbstractEntity
     /**
      * Sets the clientgroup.
      */
-    public function setClientgroup(Clientgroup $clientgroup):void
+    public function setClientgroup(Clientgroup $clientgroup): void
     {
         $this->clientgroup = $clientgroup;
     }

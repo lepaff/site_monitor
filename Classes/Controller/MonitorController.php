@@ -15,11 +15,9 @@ use LEPAFF\SiteMonitor\Service\ClientService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "Website monitor" Extension for TYPO3 CMS.
@@ -173,7 +171,7 @@ class MonitorController extends ActionController
             'typo3Versions' => $typo3Versions,
             'pagination' => $pagination,
             'clients' => $queryResult['results'],
-            'message' => array_key_exists('tx_sitemonitor_clientcreate', $_GET) ? $_GET['tx_sitemonitor_clientcreate']['message']: null
+            'message' => array_key_exists('tx_sitemonitor_clientcreate', $_GET) ? $_GET['tx_sitemonitor_clientcreate']['message'] : null,
         ]);
 
         return $this->htmlResponse();
@@ -184,7 +182,8 @@ class MonitorController extends ActionController
      *
      * @return null|object|string|void
      */
-    public function showAction(Client $client, array $errors = []): ResponseInterface {
+    public function showAction(Client $client, array $errors = []): ResponseInterface
+    {
         if (0 === count($client->getSite())) {
             $site = GeneralUtility::makeInstance(Site::class);
             $this->view->assign('site', $site);

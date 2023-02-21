@@ -348,7 +348,7 @@ return [
                 'foreign_table' => 'tx_sitemonitor_domain_model_clientgroup',
                 'default' => '',
                 'items' => [
-                    ['Bitte wählen', '0']
+                    ['Bitte wählen', '0'],
                 ],
             ],
         ],

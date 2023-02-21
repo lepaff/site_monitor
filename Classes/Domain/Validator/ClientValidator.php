@@ -2,8 +2,6 @@
 
 namespace LEPAFF\SiteMonitor\Domain\Validator;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
 class ClientValidator extends AbstractValidator
